@@ -9,14 +9,17 @@ block content
 			a.btn.btn-info.btn-xs
 					i.fa.fa-thumbs-up(style='font-size:15px') 
 					small &nbsp; Like
+			|  
 			a.btn.btn-danger.btn-xs
 					i.fa.fa-thumbs-down(style='font-size:15px') 
 					small &nbsp; Dislike
+		br
 		span.label.label-default #{question.author}
 		p Asked on : #{question.createdAt.toLocaleDateString()}
 		p Edited on : #{question.updatedAt.toLocaleDateString()}
 		.inline
 			span.label.label-info #{question.votes}
+			|  
 			span.badge #{question.category}
 		br
 		if user
@@ -28,17 +31,19 @@ block content
 	if answers
 		each answer in answers
 			.row.answerfield
-				.col-md-1
-					.vote-count
-						button
-							i.fa.fa-arrow-up(aria-hidden="true")
-						.voteNum= answer.votes
-						button
-							i.fa.fa-arrow-down(aria-hidden="ture")
-				.col-md-11
-					.answer !{answer.body}
+				.row
+					.col-md-1
+						.vote-count
+							a(href="#", style="text-decoration: none")
+								i.fa.fa-arrow-up(aria-hidden=true, style="font-size: 20px")
+							.voteNum= answer.votes
+							a(href="#")
+								i.fa.fa-arrow-down(aria-hidden=true,  style="font-size: 20px")
+					.col-md-11
+						.answer !{answer.body}
+					hr(style = "width: 90%")
 					.timestamp - #{answer.author}
-					//- Time Milauna Baaki chha
+					.timestamp - #{answer.createdAt}
 			br
 		hr
 	if user					

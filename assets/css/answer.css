@@ -1,7 +1,8 @@
 .answerfield {
     font-style: normal;
     overflow: auto;
-    background-color: #ebebeb;
+    border: 2px solid #ebebeb;
+    background-color: #F6F7F2;
     padding: 30px;
 }
 
@@ -23,15 +24,6 @@
     margin:0px;
 }
 
-.btn1 {
-    padding: 0px;
-}
-
-.btn2 {
-    padding-right: 6px;
-}
-
 .voteNum {
     margin: 0px;
-    padding-right: 6px;
 }
