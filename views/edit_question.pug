@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1 Edit 
+    form(method='POST', action='/questions/edit/' + question._id)
+        #form-group
+            label Title:
+            input.form-control(name='title', type='text', value=question.title)
+        #form-group
+            label Author:
+            input.form-control(name='author', type='text', value=question.author)
+        #form-group
+            label Category:
+            input.form-control(name='category', type='text', value=question.category)
+        #form-group
+            label Body:
+            textarea#ck_editor.form-control(name='body', rows='10', type='text', value=question.body)
+        br
+        input.btn.btn-primary(type='submit', value='Submit')

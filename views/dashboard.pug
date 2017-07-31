@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1(style="text-align: center") Dashboard
+
+    h3 Welcome #{user.username}
+    hr
+
+    h4 #{questions.length} questions
+    br
+    if questions
+        ul.list-group
+            each question in questions
+                li.list-group-item
+                    <a href='/questions/#{question._id}'>#{question.title}</a>
+    hr
+
+    if user.username === 'gexlimbu' || 'admin'
+        .col-md-4
+            h3 Add Categories
+            form(method='POST', action='/user/dashboard')
+                #form-group
+                    input.form-control(type=text, name='category')
+                    br
+                    input.btn.btn-primary(type='submit', value='Save')

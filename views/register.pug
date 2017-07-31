@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    .col-md-4
+        h1 Sign Up
+        form(method='POST', action='/user/register')
+            #form-group
+                label User Name:
+                input.form-control(name='userName', type='text' placeholder="Username")
+            br
+            #form-group
+                label First Name:
+                input.form-control(name='firstName', type='text' placeholder="First Name")
+            br
+            #form-group
+                label Last Name:
+                input.form-control(name='lastName', type='text' placeholder="Last Name")
+            br
+            #form-group
+                label Gender:
+                select.form-control(name='gender')
+                    option Male
+                    option Female
+
+            br
+            #form-group
+                label Email:
+                input.form-control(name='email', type='Email', placeholder='Email')
+            br
+            #form-group
+                label Password:
+                input.form-control(name='password', type='password' placeholder="Password")
+            br
+            input.btn.btn-primary(type='submit', value='Submit')

@@ -1,0 +1,54 @@
+extends layout
+
+block content
+	.page-header
+		h1#page-header-title #{question.title}
+		if question.body
+			.well !{question.body}
+		.inline
+			a.btn.btn-info.btn-xs
+					i.fa.fa-thumbs-up(style='font-size:15px') 
+					small &nbsp; Like
+			a.btn.btn-danger.btn-xs
+					i.fa.fa-thumbs-down(style='font-size:15px') 
+					small &nbsp; Dislike
+		span.label.label-default #{question.author}
+		p Asked on : #{question.createdAt.toLocaleDateString()}
+		p Edited on : #{question.updatedAt.toLocaleDateString()}
+		.inline
+			span.label.label-info #{question.votes}
+			span.badge #{question.category}
+		br
+		if user
+			if user.username === question.author
+				.inline
+					a.btn.btn-default(href='/questions/edit/'+question._id) Edit 
+					a.btn.btn-danger.delete-question(href='#', data-id= question._id) Delete
+	|
+	if answers
+		each answer in answers
+			.row.answerfield
+				.col-md-1
+					.vote-count
+						button
+							i.fa.fa-arrow-up(aria-hidden="true")
+						.voteNum= answer.votes
+						button
+							i.fa.fa-arrow-down(aria-hidden="ture")
+				.col-md-11
+					.answer !{answer.body}
+					.timestamp - #{answer.author}
+					//- Time Milauna Baaki chha
+			br
+		hr
+	if user					
+		form(method='POST', action='/answer/post')
+			.form-group
+				label(for='formGroupExampleInput2') Answer
+				textarea#ck_editor.form-control(name='body', rows='10', placeholder='Elaborate ... ')
+			.form-group
+				input(type='hidden', name='parent', value=question._id)
+				input.btn.btn-success(type='submit', value='Post Answer')
+	else
+		h3 
+			a(href="/user/login") Login to answer

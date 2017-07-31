@@ -1,0 +1,22 @@
+.question_list_group {
+    max-height: 60%;
+    font-family: "Raleway";
+    font-weight: 500;
+    font-size: 15px;
+    color: #262626;
+    white-space: normal;
+    margin-bottom: 6%;
+    line-height: 25px;
+}
+
+.question_list {
+    text-align: left;
+    padding-bottom: 15px;
+    margin-top: 1px;
+    margin-bottom: 10px;
+    border-bottom:1px solid rgb(238,238,238);
+    border-top:none;
+    border-left: none;
+    border-right: none;
+    position: relative;
+}

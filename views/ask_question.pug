@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    h1 Ask a Question
+    form(method='POST', action='/questions/ask')
+        #form-group
+            label Title:
+            input.form-control(name='title', type='text')
+        br
+        #form-group
+            label Category:
+                select.form-control(name='category')
+                    each category in categories
+                        option= category.name
+        br
+        #form-group
+            label Body:
+            textarea#ck_editor.form-control(name='body', rows='10', placeholder='Elaborate ... ')
+        br
+        input.btn.btn-primary(type='submit', value='Submit')

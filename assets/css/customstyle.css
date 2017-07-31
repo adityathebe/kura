@@ -1,0 +1,44 @@
+/* Page Header */
+
+#page-header-title {
+	font-family: "Raleway", Georgia, Times, "Times New Roman", serif;
+	font-size: 25px;
+	line-height: 30px;
+	color: #262626;
+}
+
+.well {
+	font-family: "Raleway", Georgia, Times, "Times New Roman", serif;
+	font-size: 15px;
+	line-height: 24px;
+	color: #262626;
+}
+
+/* Font page Question Design */
+
+.card-title {
+	font-weight: bold;
+	font-family: 'Raleway';
+	font-size: 20px;
+}
+
+.card-block a:hover{
+	text-decoration: none;
+}
+
+.card-block {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+
+/* Navigation Bar */
+
+.navbar-brand {
+	font-weight: bold;
+	font-family:'Satisfy';
+}
+
+.nav {
+	font-weight: bold;
+}

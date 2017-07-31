@@ -1,0 +1,39 @@
+doctype html
+html
+    head
+        title KURA
+
+        //-Bootstrap
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+
+        //-Custom CSS
+        link(rel='stylesheet', href='/css/customstyle.css')
+        link(rel='stylesheet', href='/css/footer.css')
+        link(rel='stylesheet', href='/css/answer.css')
+        link(rel='stylesheet', href='/css/sidebar.css')
+
+        //-Fonts
+        link(href="https://fonts.googleapis.com/css?family=Pacifico", rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css?family=Raleway", rel="stylesheet")
+        link(href='https://fonts.googleapis.com/css?family=Satisfy', rel='stylesheet')
+        link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet")
+    body
+        include includes/_navbar.pug
+        .container
+            //- Other templates will be inserted here
+            != messages('message', locals)
+            if errors
+                each error in errors
+                    .alert.alert-danger #{error.msg}
+            block content
+
+        //- External Scripts
+        script(src="/jquery/jquery.js")
+        script(src="/js/bootstrap.min.js")
+        script(src="/js/main.js")
+
+        //- Ck Editor
+        script(src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js")
+        script(src="/js/ck_editor.js")
+
+        include includes/_footer.pug

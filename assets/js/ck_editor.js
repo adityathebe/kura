@@ -1,0 +1,1 @@
+CKEDITOR.replace('ck_editor');
