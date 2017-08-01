@@ -8,22 +8,26 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">KURA</a>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
+        #navbar.navbar-collapse.collapse
+            ul.nav.navbar-nav
+                li
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
                             <input style="width:500px;" type="text" class="form-control" placeholder="Search">
                         </div>
                         <button type="submit" class="btn btn-success">Search</button>
                     </form>
-                </li>
-            </ul>
-        ul.nav.navbar-nav.navbar-right
-            if user
-                <li><a href="/questions/ask"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ask A Question</a></li>
-                <li><a href="/user/dashboard">#{user.username}</a></li>
-                <li><a href="/user/logout">Log out</a></li>
-            else
-                <li><a href="/user/login">Login</a></li>
-                <li><a href="/user/register">Sign Up</a></li>
+            ul.nav.navbar-nav.navbar-right
+                if user
+                    <li><a href="/questions/ask"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ask A Question</a></li>
+
+                    li.dropdown
+                        <a href="/user/dashboard" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> #{user.username}<b class="caret"></b></a>
+                        ul.dropdown-menu
+                            li
+                                <a href="/user/#{user.username}"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            li
+                                a(href="/user/logout") Log out
+                else
+                    <li><a href="/user/login">Login</a></li>
+                    <li><a href="/user/register">Sign Up</a></li>

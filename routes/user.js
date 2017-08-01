@@ -126,6 +126,11 @@ router.post('/dashboard', requireLogin, (req, res) => {
     }
 });
 
+// Edit profile
+router.get('/edit', (req, res) => {
+    res.render('edit_profile');
+});
+
 // Display Single User Profile
 router.get('/:username', (req, res) => {
     UserModel.findOne({username: req.params.username}, (err, user) => {
@@ -152,8 +157,8 @@ router.get('/:username', (req, res) => {
             req.flash('info', 'No User found');
             res.redirect('/');
         }
-    })
-    
-})
+    }); 
+});
+
 
 module.exports = router;
