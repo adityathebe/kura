@@ -15,6 +15,7 @@ function requireLogin (req, res, next) {
 let UserModel = require('../models/user');
 let QuestionModel = require('../models/question');
 let CategoryModel = require('../models/category');
+let AnswerModel = require('../models/answer');
 
 // Register
 router.get('/register', (req, res) => {
@@ -123,6 +124,36 @@ router.post('/dashboard', requireLogin, (req, res) => {
             }
         });
     }
+});
+
+// Display Single User Profile
+router.get('/:username', (req, res) => {
+    UserModel.findOne({username: req.params.username}, (err, user) => {
+        if(user) {
+            QuestionModel.find({author : req.params.username}, (err, question) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    let totalVotes = 0;
+                    for(q of question) {
+                        totalVotes += q.votes;
+                    }
+                    AnswerModel.find({author: req.params.username}, (err, answers) => {
+                        res.render('userinfo', {
+                            questions: question,
+                            answers: answers,
+                            username : req.params.username,
+                            votes: totalVotes
+                        });
+                    });
+                }
+            });
+        } else {
+            req.flash('info', 'No User found');
+            res.redirect('/');
+        }
+    })
+    
 })
 
 module.exports = router;

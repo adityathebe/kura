@@ -15,4 +15,5 @@ h3 Top Users
 br
 ul.list-group
     each user in users
-        li.list-group-item #{user.username}
+        li.list-group-item 
+            <a href='/user/#{user.username}'> #{user.username} </a>

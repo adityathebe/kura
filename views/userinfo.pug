@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    .col-md-8
+        h3 #{questions.length} Questions
+        ul.list-group
+            each question in questions
+                li.list-group-item 
+                    <a href="/questions/#{question._id}#"> #{question.title} </a>
+        hr
+        h3 #{answers.length} Answers
+        ul.list-group
+            each answer in answers
+                li.list-group-item !{answer.body}
+    .col-md-4
+        div(style="text-align: center")
+            hr
+            h1= username
+            hr
+        .well
+            h3 <i class='fa fa-thumbs-up'></i> 
+                small #{votes} karmas
+            h3 #{questions.length}
+                small  questions asked
+            h3 #{answers.length}
+                small  answers submitted
