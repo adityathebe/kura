@@ -2,13 +2,13 @@ h3 Top Questions
 ul.list-group.question_list_group
     each question in questions
         a(href = '/questions/' + question._id)
-            li.list-group-item.question_list #{question.title}
+            li.list-group-item.question_list  #{question.title}
 
 h3 Categories
 br
 ul.list-group        
     each tag in tags
-        li.list-group-item #{tag}
+        li.list-group-item #{tag.name}
 
 hr
 h3 Top Users

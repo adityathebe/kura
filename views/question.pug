@@ -1,34 +1,32 @@
 extends layout
 
 block content
-	.page-header
-		h1#page-header-title #{question.title}
+	.page-header.page-header-custom
+		h1#page-header-title #{question.title} <span class="badge">#{question.category} </span>
 		if question.body
 			.well !{question.body}
 		.inline
 			a.btn.btn-info.btn-xs
-					i.fa.fa-thumbs-up(style='font-size:15px') 
-					small &nbsp; Like
+				i.fa.fa-thumbs-up(style='font-size:15px') 
+				small &nbsp; Upvote | #{question.votes}
 			|  
 			a.btn.btn-danger.btn-xs
-					i.fa.fa-thumbs-down(style='font-size:15px') 
-					small &nbsp; Dislike
-		br
-		span.label.label-default #{question.author}
-		p Asked on : #{question.createdAt.toLocaleDateString()}
-		p Edited on : #{question.updatedAt.toLocaleDateString()}
-		.inline
-			span.label.label-info #{question.votes}
-			|  
-			span.badge #{question.category}
+				i.fa.fa-thumbs-down(style='font-size:15px') 
+				small &nbsp; Downvote
 		br
 		if user
 			if user.username === question.author
 				.inline
-					a.btn.btn-default(href='/questions/edit/'+question._id) Edit 
-					a.btn.btn-danger.delete-question(href='#', data-id= question._id) Delete
+					a.btn.btn-info.btn-xs(href='/questions/edit/'+question._id) 
+						small Edit
+					a.btn.btn-danger.btn-xs(href='#', data-id= question._id) 
+						small Delete
+		br
+		.timestamp #{question.author}
+		.timestamp Asked on : #{question.createdAt.toLocaleDateString()}
 	|
 	if answers
+		h3 #{answers.length} answers
 		each answer in answers
 			.row.answerfield
 				.row
@@ -42,8 +40,8 @@ block content
 					.col-md-11
 						.answer !{answer.body}
 					hr(style = "width: 90%")
-					.timestamp - #{answer.author}
-					.timestamp - #{answer.createdAt}
+					.timestamp Answered by - #{answer.author}
+					.timestamp - #{answer.createdAt.toLocaleDateString()}
 			br
 		hr
 	if user					

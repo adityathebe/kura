@@ -1,5 +1,11 @@
 /* Page Header */
 
+
+.page-header-custom {
+	border: 1px solid #ebebeb;
+	padding: 20px;
+}
+
 #page-header-title {
 	font-family: "Raleway", Georgia, Times, "Times New Roman", serif;
 	font-size: 25px;

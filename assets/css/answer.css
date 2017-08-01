@@ -9,6 +9,8 @@
 .timestamp {
     font-size: 15px;
     text-align: right;
+    font-family: Raleway;
+    font-weight: bold;
 }
 
 .vote-count{
@@ -25,5 +27,6 @@
 }
 
 .voteNum {
-    margin: 0px;
+    margin-right:5px;
+    font-size: 20px;
 }

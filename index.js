@@ -8,8 +8,10 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 
 const app = express();
+const port = process.env.PORT || 3000
 
-mongoose.connect('mongodb://localhost/kura');
+const mongoURI = 'mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura';
+mongoose.connect(mongoURI || 'mongodb://localhost/kura');
 let db = mongoose.connection;
 
 // Check for Database errors
@@ -26,6 +28,7 @@ db.once('open', () => {
 let Questions = require('./models/question');
 let Answers = require('./models/answer');
 let UserModel = require('./models/user');
+let CategoryModel = require('./models/category');
 
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -92,17 +95,28 @@ function requireLogin (req, res, next) {
 
 // Home Page
 app.get('/', (req, res) => {
+    // Set Global Variables
     Questions.find({}, (err, questions) => {
         if (err) {
             console.log(err);
         } else {
             UserModel.find({}, (err, users) => {
-                res.render('home', {
-                    questions: questions.reverse().slice(0, 10),
-                    tags : ['Science','Maths', 'General', 'Computer Science', 'Physics'],
-                    users: users
-                });
-            });            
+                if (err) {
+                    console.log(err);
+                } else {
+                    CategoryModel.find({}, (err, tags) => {
+                        if(err) {
+                            console.log(err);
+                        } else {
+                            res.render('home', {
+                                questions,
+                                users,
+                                tags
+                            });
+                        }
+                    });
+                }
+            });       
         }
     });
 });
@@ -115,6 +129,6 @@ app.use('/questions', questionRoute);
 app.use('/answer', answerRoute);
 app.use('/user', userRoute);
 
-app.listen(3000, ()=> {
-	console.log("listening at port 3000");
+app.listen(port, ()=> {
+	console.log(`Listening at port ${port}`);
 });
