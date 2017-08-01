@@ -28,21 +28,22 @@ block content
 	if answers
 		h3 #{answers.length} answers
 		each answer in answers
-			.row.answerfield
-				.row
-					.col-md-1
-						.vote-count
-							a(href="#", style="text-decoration: none")
-								i.fa.fa-arrow-up(aria-hidden=true, style="font-size: 20px")
+			.row1.answerfield
+				.col-md-1
+					.vote-count
+						a(href="#", style="text-decoration: none")
+							i.fa.fa-arrow-up.arrowup(aria-hidden=true, style="font-size: 20px")
 							.voteNum= answer.votes
 							a(href="#")
-								i.fa.fa-arrow-down(aria-hidden=true,  style="font-size: 20px")
-					.col-md-11
+								i.fa.fa-arrow-down.arrowdown(aria-hidden=true,  style="font-size: 20px")
+				.col-md-11
+					.ans
 						.answer !{answer.body}
 					hr(style = "width: 90%")
-					.timestamp Answered by - #{answer.author}
+					.timestamp Answered by - <a href="/user/#{answer.author}">#{answer.author}</a> <i class="fa fa-check" aria-hidden="true"></i>
 					.timestamp - #{answer.createdAt.toLocaleDateString()}
-			br
+
+			hr
 		hr
 	if user					
 		form(method='POST', action='/answer/post')
