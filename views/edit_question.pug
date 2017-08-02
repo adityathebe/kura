@@ -14,6 +14,6 @@ block content
             input.form-control(name='category', type='text', value=question.category)
         #form-group
             label Body:
-            textarea#ck_editor.form-control(name='body', rows='10', type='text', value=question.body)
+            textarea#ck_editor.form-control(name='body', rows='10', type='text')=question.body
         br
         input.btn.btn-primary(type='submit', value='Submit')

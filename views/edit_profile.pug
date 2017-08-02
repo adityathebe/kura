@@ -15,12 +15,12 @@ block content
                 br
                 #form-group
                     label Password:
-                    input.form-control(name='password', type='password' placeholder="Password")
+                    input.form-control(name='password', type='password' placeholder="Password", value=user.password)
                 br
             .col-md-8
                 #form-group
                     label Bio:
-                    textarea.form-control(name='bio', rows='3', maxlength='160', placeholder="... 160 characters limit")
+                    textarea.form-control(name='bio', rows='3', maxlength='160', placeholder="... 160 characters limit")=user.bio
                 br
         .row
             .col-md-4
