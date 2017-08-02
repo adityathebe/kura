@@ -33,21 +33,22 @@ block content
             br
             input.btn.btn-primary(type='submit', value='Submit')
 
-        .col-md-4
+        .col-md-3
             #form-group
                 label Faculty:
                 select.form-control(name='faculty')
                     option Computer Science
             br
-            .col-md-6
-                #form-group
-                    label Year:
-                    select.form-control(name='year')
-                        option 1
-                        option 2
-            .col-md-6
-                #form-group
-                    label Semester:
-                    select.form-control(name='semester')
-                        option 1
-                        option 2
+            .row
+                .col-md-5
+                    #form-group
+                        label Year:
+                        select.form-control(name='year')
+                            option 1
+                            option 2
+                .col-md-5
+                    #form-group
+                        label Semester:
+                        select.form-control(name='semester')
+                            option 1
+                            option 2

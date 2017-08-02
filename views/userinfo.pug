@@ -23,6 +23,10 @@ block content
                 br
                 small Year - #{user.year} | semester - #{user.semester}
             hr
+            if user.bio
+                h3 
+                    small= user.bio
+            hr
             h3 <i class='fa fa-thumbs-up'></i> 
                 small #{votes} karmas
             h3 #{questions.length}

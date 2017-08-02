@@ -25,7 +25,10 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                         <a href="/user/dashboard" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> #{user.username}<b class="caret"></b></a>
                         ul.dropdown-menu
                             li
-                                <a href="/user/#{user.username}"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                <a href="/user/#{user.username}"><i class="fa fa-user"></i> Profile</a>
+                            li
+                                a(href="/user/edit") <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                            li(role="presentation" class="divider")
                             li
                                 <a href="/user/logout"><i class="fa fa-sign-out"></i> Log out </a>
                 else

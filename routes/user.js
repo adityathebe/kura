@@ -138,8 +138,37 @@ router.post('/dashboard', requireLogin, (req, res) => {
 });
 
 // Edit profile
-router.get('/edit', (req, res) => {
+router.get('/edit', requireLogin, (req, res) => {
     res.render('edit_profile');
+});
+
+// Edit Profile
+router.post('/edit', requireLogin, (req, res) => {
+    req.checkBody('firstname', 'Invalid First Name').notEmpty().isAlpha();
+    req.checkBody('lastname', 'Invalid Last Name').notEmpty();
+    req.checkBody('password', 'Password must be at least 6 characters long').notEmpty().len(8, 30);
+    req.checkBody('bio', 'Too Long Description').len(0, 160);
+    
+    UserModel.findOne({_id: req.user._id}, (err, user) => {
+        if(err) {
+            return console.log(err);
+        }
+
+        user.firstname = req.body.firstname;
+        user.lastname = req.body.lastname;
+        user.password = req.body.password;
+        user.bio = req.body.bio;
+
+        user.save( (err, newuser) => {
+            if(err) {
+                console.log(err);
+                req.flash('info', 'Could not update profile');
+            } else {
+                req.flash('success', 'Successfully edited');                
+            }
+            res.redirect('/user/'+user.username);
+        })
+    });
 });
 
 // Display Single User Profile
