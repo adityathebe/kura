@@ -4,11 +4,11 @@ ul.list-group.question_list_group
         a(href = '/questions/' + question._id)
             li.list-group-item.question_list  #{question.title}
 
-h3 Categories
-br
-ul.list-group        
-    each tag in tags
-        li.list-group-item #{tag.name}
+h3 Subjects
+br     
+each tag in tags
+    span.badge 
+        small #{tag.name}
 
 hr
 h3 Top Users

@@ -4,6 +4,18 @@ let categorySchema = mongoose.Schema({
     name: {
         type: String,
         required: true
+    },
+    stream : {
+        type: String,
+        required: true
+    },
+    year : {
+        type : Number,
+        required: true
+    },
+    sem: {
+        type: Number,
+        required: true
     }
 });
 

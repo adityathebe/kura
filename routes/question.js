@@ -18,9 +18,13 @@ function requireLogin (req, res, next) {
 
 // Ask A Question
 router.get('/ask', requireLogin, (req, res) => {
-    CategoryModel.find({}, (err, categories) => {
+    let year = req.user.year;
+    let sem = req.user.semester;
+    let stream = req.user.faculty;
+    CategoryModel.find({year, sem, stream}, (err, categories) => {
+        console.log(categories)
         res.render('ask_question', {categories});        
-    })
+    });
 });
 
 // Delete A Question

@@ -16,9 +16,22 @@ block content
 
         if user.username === 'admin'
             .col-md-4
-                h3 Add Categories
+                h3 Add Subject
                 form(method='POST', action='/user/dashboard')
                     #form-group
-                        input.form-control(type=text, name='category')
+                        label Subject Name
+                        input.form-control(type=text, name='name')
                         br
-                        input.btn.btn-primary(type='submit', value='Save')
+                    #form-group
+                        label Stream
+                        input.form-control(type=text, name='stream',value='Computer Science')
+                        br
+                    #form-group
+                        label Year
+                        input.form-control(type=text, name='year', value='2')
+                        br
+                    #form-group
+                        label Semester
+                        input.form-control(type=text, name='semester', value='2')
+                        br
+                        input.btn.btn-success(type='submit', value='Save')

@@ -114,7 +114,10 @@ router.get('/dashboard', requireLogin, (req, res) => {
 
 // To store categories
 router.post('/dashboard', requireLogin, (req, res) => {
-    req.checkBody('category', 'Cannot be blank').notEmpty();
+    req.checkBody('name', 'Cannot be blank').notEmpty();
+    req.checkBody('stream', 'Cannot be blank').notEmpty();
+    req.checkBody('year', 'Cannot be blank').isInt();
+    req.checkBody('semester', 'Cannot be blank').isInt();
 
     var errors = req.validationErrors();
 
@@ -123,7 +126,10 @@ router.post('/dashboard', requireLogin, (req, res) => {
         res.redirect('/user/dashboard');
     } else {
         let user = new CategoryModel({
-            name : req.body.category
+            name : req.body.name,
+            stream : req.body.stream,
+            year : req.body.year,
+            sem : req.body.semester
         });
 
         user.save((err) => {
