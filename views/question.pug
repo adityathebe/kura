@@ -15,7 +15,7 @@ block content
 				small &nbsp; Downvote
 		br
 		if user
-			if user.username === question.author
+			if user.username === question.author || 'admin'
 				.inline
 					a.btn.btn-info.btn-xs(href='/questions/edit/'+question._id) 
 						small Edit

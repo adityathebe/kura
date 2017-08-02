@@ -16,9 +16,12 @@ block content
     .col-md-4
         div(style="text-align: center")
             hr
-            h1= username
+            h1(style="font-family: 'Raleway'") #{user.firstName} #{user.lastName}
             hr
         .well
+            h3 #{user.faculty}
+                br
+                small Year - #{user.year} | semester - #{user.semester}
             h3 <i class='fa fa-thumbs-up'></i> 
                 small #{votes} karmas
             h3 #{questions.length}

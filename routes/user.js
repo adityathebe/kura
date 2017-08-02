@@ -68,7 +68,10 @@ router.post('/register', (req, res) => {
             lastName : req.body.lastName,
             gender : req.body.gender,
             email : req.body.email,
-            password : req.body.password
+            password : req.body.password,
+            year: req.body.year,
+            semester : req.body.semester,
+            faculty : req.body.faculty
         });
 
         user.save((err) => {
@@ -147,7 +150,7 @@ router.get('/:username', (req, res) => {
                         res.render('userinfo', {
                             questions: question,
                             answers: answers,
-                            username : req.params.username,
+                            user : user,
                             votes: totalVotes
                         });
                     });

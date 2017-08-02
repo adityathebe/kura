@@ -1,9 +1,9 @@
 extends layout
 
 block content
-    .col-md-4
-        h1 Sign Up
-        form(method='POST', action='/user/register')
+    h1 Sign Up
+    form(method='POST', action='/user/register')
+        .col-md-4
             #form-group
                 label User Name:
                 input.form-control(name='userName', type='text' placeholder="Username")
@@ -32,3 +32,22 @@ block content
                 input.form-control(name='password', type='password' placeholder="Password")
             br
             input.btn.btn-primary(type='submit', value='Submit')
+
+        .col-md-4
+            #form-group
+                label Faculty:
+                select.form-control(name='faculty')
+                    option Computer Science
+            br
+            .col-md-6
+                #form-group
+                    label Year:
+                    select.form-control(name='year')
+                        option 1
+                        option 2
+            .col-md-6
+                #form-group
+                    label Semester:
+                    select.form-control(name='semester')
+                        option 1
+                        option 2
