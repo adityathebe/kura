@@ -121,6 +121,11 @@ app.get('/', (req, res) => {
     });
 });
 
+// About Us
+app.get('/about', (req, res) => {
+    res.render('about_us');
+})
+
 // Route Files
 let questionRoute = require('./routes/question');
 let answerRoute = require('./routes/answer');
