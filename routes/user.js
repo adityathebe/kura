@@ -54,36 +54,44 @@ router.post('/register', (req, res) => {
     req.checkBody('password', 'Password must be at least 6 characters long').notEmpty().len(8, 30);
     req.checkBody('email', 'Invalid Email').isEmail();
 
-    var errors = req.validationErrors();
-
-    if (errors) {
-        res.render('register', {
-            title : 'Sign Up',
-            errors: errors
-        });
-    } else {
-        let user = new UserModel({
-            username : req.body.userName,
-            firstName : req.body.firstName,
-            lastName : req.body.lastName,
-            gender : req.body.gender,
-            email : req.body.email,
-            password : req.body.password,
-            year: req.body.year,
-            semester : req.body.semester,
-            faculty : req.body.faculty
-        });
-
-        user.save((err) => {
-            if(err) {
-                return console.log(err);
+    UserModel.findOne({username: req.body.userName}, (err, user) => {
+        if(!user) {
+            var errors = req.validationErrors();
+            if (errors) {
+                res.render('register', {
+                    title : 'Sign Up',
+                    errors: errors
+                });
             } else {
-                req.session.user = user;
-                req.flash('success', 'Logged In as ' + user.username);
-                res.redirect('/');
+                let user = new UserModel({
+                    username : req.body.userName,
+                    firstName : req.body.firstName,
+                    lastName : req.body.lastName,
+                    gender : req.body.gender,
+                    email : req.body.email,
+                    password : req.body.password,
+                    year: req.body.year,
+                    semester : req.body.semester,
+                    faculty : req.body.faculty
+                });
+
+                user.save((err) => {
+                    if(err) {
+                        return console.log(err);
+                    } else {
+                        req.session.user = user;
+                        req.flash('success', 'Logged In as ' + user.username);
+                        res.redirect('/');
+                    }
+                });
             }
-        });
-    }
+        } else {
+            req.flash('danger', 'User with that username already exists');
+            res.redirect('/user/register');
+        }
+    })
+
+    
 });
 
 // Logout
