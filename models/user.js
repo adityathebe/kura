@@ -10,7 +10,8 @@ let userSchema = mongoose.Schema({
     faculty   : { type: String, required : true },
     year      : { type: Number, required : true },
     semester  : { type: Number, required : true },
-    bio       : { type: String, required: false }
+    bio       : { type: String, required: false },
+    admin     : { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('User', userSchema);

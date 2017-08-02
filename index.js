@@ -87,7 +87,7 @@ app.use(function(req, res, next) {
 // Function to check if user is logged in
 function requireLogin (req, res, next) {
     if (!req.user) {
-        res.redirect('/login');
+        res.redirect('/user/login');
     } else {
         next();
     }
@@ -120,6 +120,56 @@ app.get('/', (req, res) => {
         }
     });
 });
+
+// Admin
+app.get('/admin', requireLogin, (req, res) => {
+    if(req.user.admin) {
+        Questions.find({}, (err, questions) => {
+            if(err) {
+                console.log(err);
+            } else {
+                UserModel.find({}, (err, users) => {
+                    res.render('admin', {users, questions})
+                });
+            }       
+        });        
+    } else {
+        req.flash('info','Unauthorised User');
+        res.redirect('/');
+    }
+});
+
+// To store categories
+app.post('/admin', requireLogin, (req, res) => {
+    req.checkBody('name', 'Cannot be blank').notEmpty();
+    req.checkBody('stream', 'Cannot be blank').notEmpty();
+    req.checkBody('year', 'Cannot be blank').isInt();
+    req.checkBody('semester', 'Cannot be blank').isInt();
+
+    var errors = req.validationErrors();
+
+    if (errors) {
+        req.flash('info', 'Cannot be blank');
+        res.redirect('/user/admin');
+    } else {
+        let user = new CategoryModel({
+            name : req.body.name,
+            stream : req.body.stream,
+            year : req.body.year,
+            sem : req.body.semester
+        });
+
+        user.save((err) => {
+            if(err) {
+                return console.log(err);
+            } else {
+                req.flash('success', 'New Category Added');
+                res.redirect('/user/admin');
+            }
+        });
+    }
+});
+
 
 // About Us
 app.get('/about', (req, res) => {

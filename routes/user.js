@@ -37,7 +37,7 @@ router.post('/login', (req, res) => {
             if (req.body.password === user.password) {
                 req.session.user = user;
                 req.flash('success', 'Logged in as ' + user.username);
-                res.redirect('/user/dashboard');
+                res.redirect('/user/'+user.username);
             } else {
                 req.flash('danger', 'Incorrect password');
                 res.redirect('login');
@@ -99,48 +99,6 @@ router.get('/logout', (req,res) => {
     req.session.destroy(() => {
         res.redirect('/');        
     });
-});
-
-// Dashboard
-router.get('/dashboard', requireLogin, (req, res) => {
-    QuestionModel.find({author : req.user.username}, (err, questions) => {
-        if (!questions) {
-            res.render('dashboard')
-        } else {
-            res.render('dashboard', {questions});            
-        }
-    })
-});
-
-// To store categories
-router.post('/dashboard', requireLogin, (req, res) => {
-    req.checkBody('name', 'Cannot be blank').notEmpty();
-    req.checkBody('stream', 'Cannot be blank').notEmpty();
-    req.checkBody('year', 'Cannot be blank').isInt();
-    req.checkBody('semester', 'Cannot be blank').isInt();
-
-    var errors = req.validationErrors();
-
-    if (errors) {
-        req.flash('info', 'Cannot be blank');
-        res.redirect('/user/dashboard');
-    } else {
-        let user = new CategoryModel({
-            name : req.body.name,
-            stream : req.body.stream,
-            year : req.body.year,
-            sem : req.body.semester
-        });
-
-        user.save((err) => {
-            if(err) {
-                return console.log(err);
-            } else {
-                req.flash('success', 'New Category Added');
-                res.redirect('/user/dashboard');
-            }
-        });
-    }
 });
 
 // Edit profile

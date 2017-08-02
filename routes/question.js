@@ -22,7 +22,6 @@ router.get('/ask', requireLogin, (req, res) => {
     let sem = req.user.semester;
     let stream = req.user.faculty;
     CategoryModel.find({year, sem, stream}, (err, categories) => {
-        console.log(categories)
         res.render('ask_question', {categories});        
     });
 });

@@ -1,7 +1,7 @@
 .team{
     padding:75px 0;
 }
-h6.description{
+.description h6{
 	font-weight: bold;
 	letter-spacing: 2px;
 	color: #999;
@@ -83,10 +83,10 @@ h6.description{
 	border-color: #fff;
 	color: #88C425;
 }
-a.ab{
+.ab a{
     color:#88C425;
 }
-a.ab:hover{
+.ab a:hover{
     text-decoration:none;
     color:#519548;
 }
