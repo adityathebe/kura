@@ -23,31 +23,26 @@ router.get('/ask', requireLogin, (req, res) => {
     })
 });
 
-// Get Single Question
-router.get('/:id', (req, res) => {
-    Questions.findById(req.params.id, (err, question) => {
-        if (err) {
-            console.log(err);
-        } else {
-            Answers.find({parent: req.params.id}, (err, answers) => {
-                res.render('question', {
-                    question: question,
-                    answers: answers
-                });
-            });
-        }
-    });
-});
-
 // Delete A Question
-router.delete('/:id', (req, res) => {
-    let query = {_id:req.params.id}
-
-    Questions.remove(query, (err) => {
-        if (err) {
-            console.log(err);
+router.get('/delete/:id', requireLogin, (req, res) => {
+    Questions.findById(req.params.id, (err, question) => {
+        if(question) {
+            if(req.user.username === question.author) {
+                Questions.remove({_id:req.params.id}, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    req.flash('success', 'Succesfully Deleted');
+                    res.redirect('/');
+                });            
+            } else {
+                req.flash('danger', 'Unauthorized User');
+                res.redirect('/questions/' + req.params.id);
+            } 
+        } else {
+            req.flash('danger', 'Invalid Request');
+            res.redirect('/');
         }
-        res.send('Success')
     });
 });
 
@@ -115,6 +110,22 @@ router.post('/ask', (req, res) => {
             }
         });
     }
+});
+
+// Get Single Question
+router.get('/:id', (req, res) => {
+    Questions.findById(req.params.id, (err, question) => {
+        if (err) {
+            console.log(err);
+        } else {
+            Answers.find({parent: req.params.id}, (err, answers) => {
+                res.render('question', {
+                    question: question,
+                    answers: answers
+                });
+            });
+        }
+    });
 });
 
 module.exports = router;

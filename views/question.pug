@@ -15,11 +15,11 @@ block content
 				small &nbsp; Downvote
 		br
 		if user
-			if user.username === question.author || 'admin'
+			if user.username === question.author
 				.inline
 					a.btn.btn-info.btn-xs(href='/questions/edit/'+question._id) 
 						small Edit
-					a.btn.btn-danger.btn-xs(href='#', data-id= question._id) 
+					a.btn.btn-danger.btn-xs.delete-question(href='/questions/delete/'+question._id) 
 						small Delete
 		br
 		.timestamp #{question.author}

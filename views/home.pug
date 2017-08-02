@@ -13,7 +13,7 @@ block content
 									.card-block
 										<a href="/questions/#{question._id}"><h4 class="card-title"> #{question.title}</h4></a>
 										ul.list-inline
-											<li><a href="/question" class="card-subtitle mb-2 text-muted"><span class="badge"> #{question.category} </span> </a></li>
+											<li class="card-subtitle mb-2 text-muted"><span class="badge"> #{question.category}</span> </li>
 											<li style="font-family: 'Pacifico';"><small>Votes : #{question.votes}</small></li>
 											li <small> Submitted on : #{question.createdAt.toLocaleDateString()}</small>
 										span.label.label-default #{question.author}
