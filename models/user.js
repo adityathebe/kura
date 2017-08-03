@@ -7,11 +7,12 @@ let userSchema = mongoose.Schema({
     email     : { type: String, required : true },
     password  : { type: String, required : true },
     gender    : { type: String, required : true },
+    imgsrc    : { type: String, required : false},
+    admin     : { type: Boolean, default : false},
+    bio       : { type: String, required : false},
     faculty   : { type: String, required : true },
     year      : { type: Number, required : true },
     semester  : { type: Number, required : true },
-    bio       : { type: String, required: false },
-    admin     : { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('User', userSchema);

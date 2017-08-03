@@ -22,6 +22,10 @@ block content
                     label Bio:
                     textarea.form-control(name='bio', rows='3', maxlength='160', placeholder="... 160 characters limit")=user.bio
                 br
+                #form-group
+                    label Profile Picture:
+                    input.form-control(name='imgsrc', placeholder="Image Link", value=user.imgsrc)
+                br
         .row
             .col-md-4
                 input.btn.btn-primary(type='submit', value='Submit')

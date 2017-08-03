@@ -16,8 +16,13 @@ block content
     .col-md-4
         div(style="text-align: center")
             hr
-            h1(style="font-family: 'Raleway'") #{user.firstName} #{user.lastName}
+            h1(style="font-family: 'Raleway'") #{user.firstName} #{user.lastName} 
+                <small> #{user.username} </small>
             hr
+        if user.imgsrc
+            div(style="float: center")
+                img(width="100%", src=user.imgsrc)
+                hr
         .well
             h3 #{user.faculty}
                 br

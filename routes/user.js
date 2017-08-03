@@ -122,6 +122,7 @@ router.post('/edit', requireLogin, (req, res) => {
         user.lastname = req.body.lastname;
         user.password = req.body.password;
         user.bio = req.body.bio;
+        user.imgsrc = req.body.imgsrc;
 
         user.save( (err, newuser) => {
             if(err) {
