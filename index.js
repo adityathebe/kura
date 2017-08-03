@@ -93,6 +93,15 @@ function requireLogin (req, res, next) {
     }
 };
 
+// Custom Express validator to not allow spaces
+app.use(expressValidator({
+    customValidators: {
+        noSpaces: function(value) {
+            return (value.search(' ')) >= 0 ? false : true;
+        }
+    }
+}));
+
 // Home Page
 app.get('/', (req, res) => {
     // Set Global Variables

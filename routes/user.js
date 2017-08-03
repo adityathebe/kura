@@ -49,8 +49,8 @@ router.post('/login', (req, res) => {
 // Register a New User
 router.post('/register', (req, res) => {
     req.checkBody('firstName', 'Invalid First Name').notEmpty().isAlpha();
-    req.checkBody('lastName', 'Invalid Last Name').notEmpty();
-    req.checkBody('userName', 'Invalid User Name').notEmpty().len(5, 20);
+    req.checkBody('lastName', 'Invalid Last Name').notEmpty().isAlpha();
+    req.checkBody('userName', 'Invalid User Name').notEmpty().noSpaces().len(5, 20);
     req.checkBody('password', 'Password must be at least 6 characters long').notEmpty().len(8, 30);
     req.checkBody('email', 'Invalid Email').isEmail();
 
