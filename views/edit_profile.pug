@@ -2,30 +2,80 @@ extends layout
 
 block content
     h1 Edit Profile
-    form(method='POST', action='/user/edit')
-        .row
-            .col-md-4
-                #form-group
-                    label First Name:
-                    input.form-control(name='firstname', type='text' placeholder="First Name", value=user.firstName)
-                br
-                #form-group
-                    label Last Name:
-                    input.form-control(name='lastname', type='text' placeholder="Last Name", value=user.lastName)
-                br
-                #form-group
-                    label Password:
-                    input.form-control(name='password', type='password' placeholder="Password", value=user.password)
-                br
-            .col-md-8
-                #form-group
-                    label Bio:
-                    textarea.form-control(name='bio', rows='3', maxlength='160', placeholder="... 160 characters limit")=user.bio
-                br
-                #form-group
-                    label Profile Picture:
-                    input.form-control(name='imgsrc', placeholder="Image Link", value=user.imgsrc)
-                br
-        .row
-            .col-md-4
-                input.btn.btn-primary(type='submit', value='Submit')
+    hr
+    .row
+        .col-sm-2.col-md-2
+            <div class="sidebar-nav">
+                <h2>Menu</h2>
+                <ul class="nav nav-tabs nav-stacked">         
+                    <li><a href='#'><h4>Profile</h4></a></li>
+                    <li><a href='#'><h4>Account</h4></a></li>
+                    <li><a href='#'><h4>Others</h4></a></li>
+                </ul>
+            </div>
+        .col-sm-6.col-md-6
+            h3 Personal info
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-md-4 control-label">First name:</label>
+                    <div class="col-sm-8 col-md-8">
+                        <input class="form-control" name="firstname" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Last name:</label>
+                    <div class="col-sm-8 col-md-8">
+                        <input class="form-control" name="lastname" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Faculty:</label>
+                    <div class="col-sm-8 col-md-8">
+                        <input class="form-control" name="faculty" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Year:</label>
+                    <div class="col-sm-8 col-md-8">
+                        <select class="form-control" id="sel1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Semester:</label>
+                    <div class="col-sm-8 col-md-8">
+                        <select class="form-control" id="sel1">
+                            <option>1</option>
+                            <option>2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Enter Password:</label>
+                    <div class="col-sm-8 col-md-8">
+                        <input class="form-control" name="password" type="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Confirm Password:</label>
+                    <div class="col-sm-8 col-md-8">
+                        <input class="form-control" name="confirmpassword" type="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="button" class="btn btn-primary" value="Save Changes">
+                        <span></span>
+                        <input type="reset" class="btn btn-default" value="Cancel">
+                    </div>
+                </div>
+            </form>
+        .col-xm-2.col-sm-6.col-md-4
+            <img src="/image/aditya.jpg" class="img-thumbnail" alt="avatar">
+                <h6>Upload a different photo...</h6>
+                <input type="file" class="form-control">
