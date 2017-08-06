@@ -7,10 +7,10 @@ ul.list-group.question_list_group
 h3 Subjects
 br     
 each tag in tags
-    span.badge 
-        small #{tag.name}
-
+    span.badge
+        a(href='/category/'+tag.name) #{tag.name}
 hr
+
 h3 Top Users
 br
 ul.list-group

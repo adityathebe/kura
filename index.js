@@ -188,7 +188,8 @@ app.post('/admin', requireLogin, (req, res) => {
 
 // Category Page
 app.get('/category/:id', (req, res) => {
-    Questions.find({category:'EEEG 202'}, (err, questions) => {
+    let query = decodeURI(req.params.id);
+    Questions.find({category:query}, (err, questions) => {
         if(err) {
             console.log(err);
         } else {
@@ -209,6 +210,15 @@ let userRoute = require('./routes/user');
 app.use('/questions', questionRoute);
 app.use('/answer', answerRoute);
 app.use('/user', userRoute);
+
+// 404 Errors
+app.get('*', (req, res) => {
+    var reply = {
+        "error" : "404 Page Not found"
+    }
+    res.json(reply, 404);
+});
+
 
 app.listen(port, ()=> {
 	console.log(`Listening at port ${port}`);
