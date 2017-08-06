@@ -119,11 +119,13 @@ router.post('/edit', requireLogin, (req, res) => {
 
         user.firstname = req.body.firstname;
         user.lastname = req.body.lastname;
-        user.bio = req.body.bio;
         user.faculty = req.body.faculty;
+        user.year = req.body.year;
+        user.semester = req.body.semester;
         user.imgsrc = req.body.imgsrc;
+        user.bio = req.body.bio;
 
-        user.save( (err, newuser) => {
+        user.save((err, newuser) => {
             if(err) {
                 console.log(err);
                 req.flash('info', 'Could not update profile');
