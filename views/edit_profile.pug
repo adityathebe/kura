@@ -5,60 +5,59 @@ block content_middle
     form(class="form-horizontal" method='POST', action='/user/edit')
         <div class="form-group">
             <label class="col-md-4 control-label">First name:</label>
-                <div class="col-sm-8 col-md-8">
-                    <input class="form-control" name="firstname" type="text" value="#{user.firstName}">
-                </div>
+            <div class="col-sm-8 col-md-8">
+                <input class="form-control" name="firstname" type="text" value="#{user.firstName}">
             </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label">Last name:</label>
-                <div class="col-sm-8 col-md-8">
-                    <input class="form-control" name="lastname" type="text" value="#{user.lastName}">
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Last name:</label>
+            <div class="col-sm-8 col-md-8">
+                <input class="form-control" name="lastname" type="text" value="#{user.lastName}">
             </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label">Faculty:</label>
-                <div class="col-sm-8 col-md-8">
-                    <input class="form-control" name="faculty" type="text" value="#{user.faculty}" disabled>
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Faculty:</label>
+            <div class="col-sm-8 col-md-8">
+                <input class="form-control" name="faculty" type="text" value="#{user.faculty}" disabled>
             </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label">Year:</label>
-                <div class="col-sm-8 col-md-8">
-                    <select class="form-control" name="year" value="#{user.year}">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Year:</label>
+            <div class="col-sm-8 col-md-8">
+                <select class="form-control" name="year" value="#{user.year}">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label">Semester:</label>
-                <div class="col-sm-8 col-md-8">
-                    <select class="form-control" name="semester">
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Semester:</label>
+            <div class="col-sm-8 col-md-8">
+                <select class="form-control" name="semester">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label">Profile Picture:</label>
-                <div class="col-sm-8 col-md-8">
-                    <input type="text" class="form-control" name="imgsrc" value="#{user.imgsrc}">
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Profile Picture:</label>
+            <div class="col-sm-8 col-md-8">
+                <input type="text" class="form-control" name="imgsrc" value="#{user.imgsrc}">
             </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label">Bio:</label>
-                <div class="col-sm-8 col-md-8">
-                    textarea.form-control(name='bio', rows='3', maxlength='160', placeholder="... 160 characters limit")= user.bio
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Bio:</label>
+            <div class="col-sm-8 col-md-8">
+                textarea.form-control(name='bio', rows='3', maxlength='160', placeholder="... 160 characters limit")= user.bio
             </div>
-            <div class="form-group">
-                <label class="col-md-4 control-label"></label>
-                <div class="col-md-8">
-                    <input type="submit" class="btn btn-primary" value="Save Changes">
-                    <span></span>
-                    <input type="reset" class="btn btn-default" value="Cancel">
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input type="submit" class="btn btn-primary" value="Save Changes">
+                <span></span>
+                <input type="reset" class="btn btn-default" value="Cancel">
             </div>
-    
+        </div>
