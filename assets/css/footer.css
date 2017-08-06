@@ -8,14 +8,14 @@ footer {
 }
 
 .footerleft { 
-    margin-top:50px; 
-    padding:0 36px; 
+    margin-top:50px;
+    padding:0 36px;
 }
 
-.logofooter { 
-    margin-bottom:10px; 
-    font-size:25px; 
-    color:#fff; 
+.logofooter {
+    margin-bottom:10px;
+    font-size:25px;
+    color:#fff;
     font-weight:700;
 }
 
@@ -23,7 +23,7 @@ footer {
 .footerleft p i { width:20px; color:#999;}
 
 
-.paddingtop-bottom {  margin-top: 30px;}
+.paddingtop-bottom { margin-top: 30px;}
 .footer-ul { list-style-type:none;  padding-left:0px; margin-left:2px;}
 .footer-ul li { line-height:29px; font-size:12px;}
 .footer-ul li a { color:#a0a3a4; transition: color 0.2s linear 0s, background 0.2s linear 0s; }

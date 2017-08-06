@@ -25,6 +25,10 @@ body p{
 	color: #262626;
 }
 
+.form-horizontal .control-label{
+    text-align: left;
+}
+
 /* Font page Question Design */
 
 .card-title {
