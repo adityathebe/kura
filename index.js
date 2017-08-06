@@ -138,7 +138,13 @@ app.get('/admin', requireLogin, (req, res) => {
                 console.log(err);
             } else {
                 UserModel.find({}, (err, users) => {
-                    res.render('admin', {users, questions})
+                    if(err) {
+                        console.log(err);
+                    } else {
+                        CategoryModel.find({}, (err, subjects) => {
+                            res.render('admin', {users, questions, subjects})
+                        })
+                    }
                 });
             }       
         });        
@@ -159,7 +165,7 @@ app.post('/admin', requireLogin, (req, res) => {
 
     if (errors) {
         req.flash('info', 'Cannot be blank');
-        res.redirect('/user/admin');
+        res.redirect('/admin');
     } else {
         let user = new CategoryModel({
             name : req.body.name,
@@ -173,7 +179,7 @@ app.post('/admin', requireLogin, (req, res) => {
                 return console.log(err);
             } else {
                 req.flash('success', 'New Category Added');
-                res.redirect('/user/admin');
+                res.redirect('/admin');
             }
         });
     }

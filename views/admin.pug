@@ -8,9 +8,13 @@ block content
         .col-md-8
             h3 Statistics
             hr
-            .well
-                h4 #{questions.length} questions asked
-            br
+            .row
+                .col-md-6
+                    .well
+                        h4 #{questions.length} questions asked
+                .col-md-6
+                    .well
+                        h4 #{subjects.length} Subjects 
             .well               
                 h4 #{users.length} users
                 .progress
@@ -20,21 +24,31 @@ block content
         .col-md-4
             h3 Add Subject
             hr
-            form(method='POST', action='/user/dashboard')
+            form(method='POST', action='/admin')
                 #form-group
                     label Subject Name
                     input.form-control(type=text, name='name')
                     br
                 #form-group
                     label Stream
-                    input.form-control(type=text, name='stream',value='Computer Science')
+                    select.form-control(type=text, name='stream')
+                        option Computer Science
+                        option Computer Engineering
+                        option Mechanical Engineering
+                        option Civil Engineering
                     br
                 #form-group
                     label Year
-                    input.form-control(type=text, name='year', value='2')
+                    select.form-control(type=text, name='year')
+                        option 1
+                        option 2
+                        option 3
+                        option 4
                     br
                 #form-group
                     label Semester
-                    input.form-control(type=text, name='semester', value='2')
+                    select.form-control(type=text, name='semester')
+                        option 1
+                        option 2
                     br
                     input.btn.btn-success(type='submit', value='Save')

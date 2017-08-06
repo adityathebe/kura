@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    h1 Edit Profile
+    form(method='POST', action='/user/edit')
+        .row
+            .col-md-4
+                #form-group
+                    label First Name:
+                    input.form-control(name='firstname', type='text' placeholder="First Name", value=user.firstName)
+                br
+                #form-group
+                    label Last Name:
+                    input.form-control(name='lastname', type='text' placeholder="Last Name", value=user.lastName)
+                br
+                #form-group
+                    label Password:
+                    input.form-control(name='password', type='password' placeholder="Password", value=user.password)
+                br
+            .col-md-8
+                #form-group
+                    label Bio:
+                    textarea.form-control(name='bio', rows='3', maxlength='160', placeholder="... 160 characters limit")=user.bio
+                br
+                #form-group
+                    label Profile Picture:
+                    input.form-control(name='imgsrc', placeholder="Image Link", value=user.imgsrc)
+                br
+        .row
+            .col-md-4
+                input.btn.btn-primary(type='submit', value='Submit')

@@ -1,5 +1,10 @@
 /* Page Header */
 
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+body p{
+	font-family: 'Quicksand', sans-serif;
+}
 
 .page-header-custom {
 	border: 1px solid #ebebeb;
