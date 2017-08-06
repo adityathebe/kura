@@ -7,10 +7,10 @@ block content
         .col-sm-2.col-md-2
             .sidebar-nav
                 h2 Menu
-                ul(class="nav nav-tabs nav-stacked")
-                    <li><a href='#'><h4>Profile</h4></a></li>
-                    <li><a href='#'><h4>Account</h4></a></li>
-                    <li><a href='#'><h4>Others</h4></a></li>
+                ul(class="list-group")
+                    <button type="button" class="list-group-item"><a href='#'><h4>Profile</h4></a></button>
+                    <button type="button" class="list-group-item"><a href='#'><h4>Account</h4></a></button>
+                    <button type="button" class="list-group-item"><a href='#'><h4>Others</h4></a></button>
         .col-sm-7.col-md-7
             h3 Personal info
             form(class="form-horizontal" method='POST', action='/user/edit')
