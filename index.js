@@ -187,12 +187,12 @@ app.post('/admin', requireLogin, (req, res) => {
 
 // Category Page
 app.get('/category/:id', (req, res) => {
-    let query = decodeURI(req.params.id);
-    Questions.find({category:query}, (err, questions) => {
+    let subject = decodeURI(req.params.id);
+    Questions.find({category:subject}, (err, questions) => {
         if(err) {
             console.log(err);
         } else {
-            res.render('category', {questions});
+            res.render('category', {questions, subject});
         }
     });
 });

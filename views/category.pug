@@ -1,6 +1,9 @@
 extends layout
 
 block content
+    .jumbotron
+        h2(style="text-align: center") #{subject}
+    hr
     ul.list-group
     each question in questions
         .container
