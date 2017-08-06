@@ -119,7 +119,6 @@ router.post('/edit', requireLogin, (req, res) => {
 
         user.firstname = req.body.firstname;
         user.lastname = req.body.lastname;
-        user.faculty = req.body.faculty;
         user.year = req.body.year;
         user.semester = req.body.semester;
         user.imgsrc = req.body.imgsrc;
