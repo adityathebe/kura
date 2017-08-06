@@ -106,6 +106,11 @@ router.get('/edit', requireLogin, (req, res) => {
     res.render('edit_profile');
 });
 
+// Edit account
+router.get('/account', requireLogin, (req, res) => {
+    res.render('edit_account');
+})
+
 // Edit Profile
 router.post('/edit', requireLogin, (req, res) => {
     req.checkBody('firstname', 'Invalid First Name').notEmpty().isAlpha();

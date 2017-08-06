@@ -8,7 +8,7 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 
 const app = express();
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 const mongoURI = 'mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura';
 mongoose.connect(mongoURI || 'mongodb://localhost/kura');
@@ -184,7 +184,6 @@ app.post('/admin', requireLogin, (req, res) => {
         });
     }
 });
-
 
 // Category Page
 app.get('/category/:id', (req, res) => {
