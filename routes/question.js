@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Bring in Question Model
 let Questions = require('../models/question');
-let Answers = require('../models/answer');
+let AnswerModel = require('../models/answer');
 let CategoryModel = require('../models/category');
 
 // Function to check if user is logged in
@@ -31,6 +31,13 @@ router.get('/delete/:id', requireLogin, (req, res) => {
     Questions.findById(req.params.id, (err, question) => {
         if(question) {
             if(req.user.username === question.author) {
+                AnswerModel.remove({parent:question.id}, (err, answers) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('Answer Removed!')
+                    }
+                });
                 Questions.remove({_id:req.params.id}, (err) => {
                     if (err) {
                         console.log(err);
@@ -121,7 +128,7 @@ router.get('/:id', (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            Answers.find({parent: req.params.id}, (err, answers) => {
+            AnswerModel.find({parent: req.params.id}, (err, answers) => {
                 res.render('question', {
                     question: question,
                     answers: answers

@@ -186,10 +186,21 @@ app.post('/admin', requireLogin, (req, res) => {
 });
 
 
+// Category Page
+app.get('/category/:id', (req, res) => {
+    Questions.find({category:'EEEG 202'}, (err, questions) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('category', {questions});
+        }
+    });
+});
+
 // About Us
 app.get('/about', (req, res) => {
     res.render('about_us');
-})
+});
 
 // Route Files
 let questionRoute = require('./routes/question');
