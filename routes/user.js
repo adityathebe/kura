@@ -110,7 +110,6 @@ router.get('/edit', requireLogin, (req, res) => {
 router.post('/edit', requireLogin, (req, res) => {
     req.checkBody('firstname', 'Invalid First Name').notEmpty().isAlpha();
     req.checkBody('lastname', 'Invalid Last Name').notEmpty();
-    req.checkBody('password', 'Password must be at least 6 characters long').notEmpty().len(8, 30);
     req.checkBody('bio', 'Too Long Description').len(0, 160);
     
     UserModel.findOne({_id: req.user._id}, (err, user) => {
@@ -120,8 +119,8 @@ router.post('/edit', requireLogin, (req, res) => {
 
         user.firstname = req.body.firstname;
         user.lastname = req.body.lastname;
-        user.password = req.body.password;
         user.bio = req.body.bio;
+        user.faculty = req.body.faculty;
         user.imgsrc = req.body.imgsrc;
 
         user.save( (err, newuser) => {

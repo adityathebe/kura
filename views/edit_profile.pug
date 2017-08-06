@@ -13,31 +13,31 @@ block content
                     <li><a href='#'><h4>Others</h4></a></li>
                 </ul>
             </div>
-        .col-sm-6.col-md-6
+        .col-sm-7.col-md-7
             h3 Personal info
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" method='POST', action='/user/edit'>
                 <div class="form-group">
                     <label class="col-md-4 control-label">First name:</label>
                     <div class="col-sm-8 col-md-8">
-                        <input class="form-control" name="firstname" type="text">
+                        <input class="form-control" name="firstname" type="text" value="#{user.firstName}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label">Last name:</label>
                     <div class="col-sm-8 col-md-8">
-                        <input class="form-control" name="lastname" type="text">
+                        <input class="form-control" name="lastname" type="text" value="#{user.lastName}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label">Faculty:</label>
                     <div class="col-sm-8 col-md-8">
-                        <input class="form-control" name="faculty" type="text">
+                        <input class="form-control" name="faculty" type="text" value="#{user.faculty}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label">Year:</label>
                     <div class="col-sm-8 col-md-8">
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" name="year">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -48,22 +48,16 @@ block content
                 <div class="form-group">
                     <label class="col-md-4 control-label">Semester:</label>
                     <div class="col-sm-8 col-md-8">
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" name="semester">
                             <option>1</option>
                             <option>2</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Enter Password:</label>
+                 <div class="form-group">
+                    <label class="col-md-4 control-label">Bio:</label>
                     <div class="col-sm-8 col-md-8">
-                        <input class="form-control" name="password" type="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Confirm Password:</label>
-                    <div class="col-sm-8 col-md-8">
-                        <input class="form-control" name="confirmpassword" type="password">
+                        textarea.form-control(name='bio', rows='3', maxlength='160', placeholder="... 160 characters limit")= user.bio
                     </div>
                 </div>
                 <div class="form-group">
@@ -75,7 +69,12 @@ block content
                     </div>
                 </div>
             </form>
-        .col-xm-2.col-sm-6.col-md-4
-            <img src="/image/aditya.jpg" class="img-thumbnail" alt="avatar">
-                <h6>Upload a different photo...</h6>
-                <input type="file" class="form-control">
+        .col-sm-3.col-md-3
+            br
+            if user.imgsrc
+                img.img-thumbnail(width="100%", src=user.imgsrc)
+            else
+                h1 hey
+                <img src="https://techreport.com/forums/styles/canvas/theme/images/no_avatar.jpg" class="img-thumbnail" alt="avatar">
+                    <h6>Upload a different photo...</h6>
+                    <input type="file" class="form-control">
