@@ -1,0 +1,11 @@
+.catgbtns {
+    border: 2px solid #337ab7;
+    color: #337ab7;
+    font-weight: bold;
+    border-radius: 10px;
+    width: 75px;
+    font-size: 10px;
+    padding: 2px;
+    display: inline-block;
+    text-align: center;
+}

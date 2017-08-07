@@ -141,6 +141,32 @@ router.post('/edit', requireLogin, (req, res) => {
     });
 });
 
+// Edit Account
+router.post('/account', requireLogin, (req, res) => {
+    req.checkBody('password', 'Password must be at least 6 characters long').notEmpty().len(8, 30);
+    
+    UserModel.findOne({_id: req.user._id}, (err, user) => {
+        if(err) {
+            return console.log(err);
+        }
+        if(user.password === req.body.oldpass) {
+            user.password = req.body.newpass;
+            user.save((err, newuser) => {
+                if(err) {
+                    console.log(err);
+                    req.flash('info', 'Could not update profile');
+                } else {
+                    req.flash('success', 'Password Changed');                
+                }
+                res.redirect('/user/account');
+            });
+        } else {
+            req.flash('info', 'Wrong Password');
+            res.redirect('/user/account');
+        }        
+    });
+});
+
 // Display Single User Profile
 router.get('/:username', (req, res) => {
     UserModel.findOne({username: req.params.username}, (err, user) => {
