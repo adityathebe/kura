@@ -57,13 +57,17 @@ router.get('/delete/:id', requireLogin, (req, res) => {
 });
 
 // Edit Single Question
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', requireLogin, (req, res) => {
+    let year = req.user.year;
+    let sem = req.user.semester;
+    let stream = req.user.faculty;
+    
     Questions.findById(req.params.id, (err, question) => {
         if (err) {
             console.log(err);
         } else {
-            res.render('edit_question', {
-                question: question
+            CategoryModel.find({year, sem, stream}, (err, categories) => {
+                res.render('edit_question', {categories, question});        
             });
         }
     });
@@ -74,7 +78,6 @@ router.get('/edit/:id', (req, res) => {
 router.post('/edit/:id', (req, res) => {
     let question = {};
     question.title = req.body.title;
-    question.author = req.body.author;
     question.body = req.body.body;
     question.category = req.body.category;
     question.updatedAt = new Date();

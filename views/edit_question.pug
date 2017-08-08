@@ -7,13 +7,13 @@ block content
             label Title:
             input.form-control(name='title', type='text', value=question.title)
         #form-group
-            label Author:
-            input.form-control(name='author', type='text', value=question.author)
-        #form-group
-            label Category:
-            input.form-control(name='category', type='text', value=question.category)
+            label Subject:
+                select.form-control#sel2(name='category')
+                    each category in categories
+                        option= category.name
+        br
         #form-group
             label Body:
-            textarea#ck_editor.form-control(name='body', rows='10', type='text')=question.body
+            textarea#ck_editor.form-control(name='body', rows='10', placeholder='Elaborate ... ')=question.body
         br
         input.btn.btn-primary(type='submit', value='Submit')

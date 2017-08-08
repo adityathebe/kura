@@ -14,8 +14,8 @@ block content
 										<a href="/questions/#{question._id}"><h4 class="card-title"> #{question.title}</h4></a>
 										ul.list-inline
 											li.card-subtitle.mb-2.text-muted
-												.catgbtns
-													a(href='/category/'+question.category) #{question.category}
+												code
+													a(href='/category/'+question.category)=question.category
 											<li style="font-family: 'Pacifico';"><small>Votes : #{question.votes}</small></li>
 											li <small> Submitted on : #{question.createdAt.toLocaleDateString()}</small>
 										span.label.label-default #{question.author}
