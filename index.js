@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const mongoURI = 'mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura';
-mongoose.connect(mongoURI || 'mongodb://localhost/kura');
+mongoose.connect(mongoURI || 'mongodb://127.0.0.1/kura');
 let db = mongoose.connection;
 
 // Check for Database errors

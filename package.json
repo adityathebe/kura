@@ -7,18 +7,18 @@
     "test": "node playground/test.js",
     "start": "node index.js"
   },
-  "engines" : {
-    "node" : "v6.10.3"
+  "engines": {
+    "node": "v6.10.3"
   },
   "author": "Aditya Thebe <me@adityathebe.com> (http://adityathebe.com)",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
     "express": "^4.15.3",
     "express-messages": "^1.0.1",
     "express-session": "^1.15.4",
     "express-validator": "^3.2.1",
-    "connect-flash": "^0.1.1",
     "mongoose": "^4.11.3",
     "pug": "^2.0.0-rc.2"
   }

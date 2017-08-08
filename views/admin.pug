@@ -9,16 +9,20 @@ block content
             h3 Statistics
             hr
             .row
-                .col-md-6
-                    .well
-                        h4 #{questions.length} questions asked
-                .col-md-6
-                    .well
-                        h4 #{subjects.length} Subjects 
-            .well               
-                h4 #{users.length} users
-                .progress
-                    .progress-bar.progress-bar-success.progress-bar-striped(role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:"+users.length+'%')
+                .col-md-4
+                    .card.text-center.card-inverse.mb-3.card-success
+                        .card-block
+                            h4.card-title #{questions.length}
+                            p.card-text questions
+                .col-md-4
+                    .card.text-center.card-inverse.mb-3.card-success
+                        .card-block
+                            h4.card-title #{subjects.length}
+                            p.card-text Users
+                .col-md-4
+                    .card.text-center.card-inverse.mb-3.card-success
+                        .card-block
+                            h4.card-title #{users.length}
             hr
 
         .col-md-4
