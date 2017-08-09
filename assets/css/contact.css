@@ -1,0 +1,69 @@
+#contact {
+    background-color: #222222;
+    background-image: url('/image/map.png');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+section {
+    padding: 30px 20PX;
+}
+#contact .section-heading {
+    color: white;
+}
+#contact .form-group {
+    margin-bottom: 20px;
+}
+#contact .form-group input,
+#contact .form-group textarea {
+    padding: 15px;
+}
+#contact .form-group input.form-control {
+    height: auto;
+}
+#contact .form-group textarea.form-control {
+    height: 197px;
+}
+#contact .form-control:focus {
+    border-color: #fed136;
+    box-shadow: none;
+}
+#contact ::-webkit-input-placeholder {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #eeeeee;
+}
+.gellary_bg_none img{
+    width: 100%;
+    height: 300px;
+}
+#contact :-moz-placeholder {
+    /* Firefox 18- */
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #eeeeee;
+}
+#contact ::-moz-placeholder {
+    /* Firefox 19+ */
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #eeeeee;
+}
+#contact :-ms-input-placeholder {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #eeeeee;
+}
+#contact .text-danger {
+    color: #e74c3c;
+}
+
+.about_kura{
+    text-align: center;
+}
+.about_kura h1{
+    font-size: 35px;
+}
