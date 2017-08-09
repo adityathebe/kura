@@ -7,11 +7,13 @@ const session = require('express-session');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 
+const DB = require('./utils');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
-const mongoURI = 'mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura';
-mongoose.connect(mongoURI || 'mongodb://127.0.0.1/kura');
+mongoose.connect('mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura');
+// mongoose.connect('mongodb://127.0.0.1/kura');
 let db = mongoose.connection;
 
 // Check for Database errors
@@ -102,81 +104,30 @@ app.use(expressValidator({
     }
 }));
 
-// Function get data from database
-const getDB = (question, user, category) => {
-    Questions.find({}, (err, questions) => {
-        if (err) {
-            console.log(err);
-        } else {
-            UserModel.find({}, (err, users) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    CategoryModel.find({}, (err, tags) => {
-                        if(err) {
-                            console.log(err);
-                        } else {
-                            res.render('home', {
-                                questions,
-                                users,
-                                tags
-                            });
-                        }
-                    });
-                }
-            });       
-        }
-    });
-};
-
 // Home Page
 app.get('/', (req, res) => {
-    // Set Global Variables
-    Questions.find({}, (err, questions) => {
-        if (err) {
-            console.log(err);
-        } else {
-            UserModel.find({}, (err, users) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    CategoryModel.find({}, (err, tags) => {
-                        if(err) {
-                            console.log(err);
-                        } else {
-                            res.render('home', {
-                                questions,
-                                users,
-                                tags
-                            });
-                        }
-                    });
-                }
-            });       
-        }
+    DB.getAll().then((data) => {
+        res.render('home', {
+            questions : data[0],
+            users: data[1],
+            tags : data[2]
+        });
     });
 });
 
 // Admin
 app.get('/admin', requireLogin, (req, res) => {
     if(req.user.admin) {
-        Questions.find({}, (err, questions) => {
-            if(err) {
-                console.log(err);
-            } else {
-                UserModel.find({}, (err, users) => {
-                    if(err) {
-                        console.log(err);
-                    } else {
-                        CategoryModel.find({}, (err, subjects) => {
-                            res.render('admin', {users, questions, subjects})
-                        })
-                    }
-                });
-            }       
-        });        
+        let info = [];
+        DB.getAll().then((data) => {
+            res.render('admin', {
+                questions : data[0],
+                users: data[1],
+                subjects : data[2]
+            });
+        });
     } else {
-        req.flash('info','Unauthorised User');
+        req.flash('info', 'Unauthorised User');
         res.redirect('/');
     }
 });
@@ -239,9 +190,8 @@ app.use('/user', userRoute);
 
 // 404 Errors
 app.get('*', (req, res) => {
-    res.send('404_page');
+    res.render('404_page');
 });
-
 
 app.listen(port, ()=> {
 	console.log(`Listening at port ${port}`);

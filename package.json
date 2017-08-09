@@ -19,6 +19,7 @@
     "express-messages": "^1.0.1",
     "express-session": "^1.15.4",
     "express-validator": "^3.2.1",
+    "lodash": "^4.17.4",
     "mongoose": "^4.11.3",
     "pug": "^2.0.0-rc.2"
   }
