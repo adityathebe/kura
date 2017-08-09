@@ -181,6 +181,11 @@ app.get('/about', (req, res) => {
     res.render('about_us');
 });
 
+// Contact Us
+app.get('/contact', (req, res) => {
+    res.render('contact_us');
+});
+
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
