@@ -102,6 +102,33 @@ app.use(expressValidator({
     }
 }));
 
+// Function get data from database
+const getDB = (question, user, category) => {
+    Questions.find({}, (err, questions) => {
+        if (err) {
+            console.log(err);
+        } else {
+            UserModel.find({}, (err, users) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    CategoryModel.find({}, (err, tags) => {
+                        if(err) {
+                            console.log(err);
+                        } else {
+                            res.render('home', {
+                                questions,
+                                users,
+                                tags
+                            });
+                        }
+                    });
+                }
+            });       
+        }
+    });
+};
+
 // Home Page
 app.get('/', (req, res) => {
     // Set Global Variables
@@ -212,10 +239,7 @@ app.use('/user', userRoute);
 
 // 404 Errors
 app.get('*', (req, res) => {
-    var reply = {
-        "error" : "404 Page Not found"
-    }
-    res.json(reply, 404);
+    res.send('404_page');
 });
 
 
