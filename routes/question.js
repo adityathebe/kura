@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const DB = require('../utils');
+
 // Bring in Question Model
 let Questions = require('../models/question');
 let AnswerModel = require('../models/answer');
@@ -132,9 +134,14 @@ router.get('/:id', (req, res) => {
             console.log(err);
         } else {
             AnswerModel.find({parent: req.params.id}, (err, answers) => {
-                res.render('question', {
-                    question: question,
-                    answers: answers
+                DB.getAll().then((data) => {
+                    res.render('question', {
+                        questions : data[0],
+                        users: data[1],
+                        tags : data[2],
+                        question: question,
+                        answers: answers
+                    });
                 });
             });
         }

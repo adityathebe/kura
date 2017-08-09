@@ -6,25 +6,27 @@ block content
     hr
     .row
         .col-md-8
-            h3 Statistics
+            .row
+                h3 Statistics
+                .col-md-4
+                    .well
+                        h4.card-title #{questions.length}
+                        p questions
+                .col-md-4
+                    .well
+                        h4.card-title #{subjects.length}
+                        p Subjects
+                .col-md-4
+                    .well
+                        h4.card-title #{users.length}
+                        p Users
             hr
             .row
-                .col-md-4
-                    .card.text-center.card-inverse.mb-3.card-success
-                        .card-block
-                            h4.card-title #{questions.length}
-                            p.card-text questions
-                .col-md-4
-                    .card.text-center.card-inverse.mb-3.card-success
-                        .card-block
-                            h4.card-title #{subjects.length}
-                            p.card-text Subjects
-                .col-md-4
-                    .card.text-center.card-inverse.mb-3.card-success
-                        .card-block
-                            h4.card-title #{users.length}
-                            p.card-text Users
-            hr
+                h3 New Questions
+                ul.list-group
+                    each question in questions
+                        li.list-group-item
+                            a(href="/questions/"+question._id)=question.title
 
         .col-md-4
             h3 Add Subject
@@ -36,7 +38,7 @@ block content
                     br
                 #form-group
                     label Stream
-                    select.form-control(type=text, name='stream' disabled)
+                    select.form-control(type=text, name='stream')
                         option Computer Science
                         option Computer Engineering
                         option Mechanical Engineering

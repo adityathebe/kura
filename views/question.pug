@@ -1,58 +1,61 @@
 extends layout
 
 block content
-	.page-header.page-header-custom
-		h1#page-header-title #{question.title} <span class="badge">#{question.category} </span>
-		if question.body
-			.well !{question.body}
-		.inline
-			a.btn.btn-info.btn-xs
-				i.fa.fa-thumbs-up(style='font-size:15px') 
-				small &nbsp; Upvote | #{question.votes}
-			|  
-			a.btn.btn-danger.btn-xs
-				i.fa.fa-thumbs-down(style='font-size:15px') 
-				small &nbsp; Downvote
-		br
-		if user
-			if user.username === question.author
+	.row
+		.col-md-9.col-xs-9.col-sm-8
+			.page-header.page-header-custom
+				h1#page-header-title #{question.title} <span class="badge">#{question.category} </span>
+				if question.body
+					.well !{question.body}
 				.inline
-					a.btn.btn-info.btn-xs(href='/questions/edit/'+question._id) 
-						small Edit
-					a.btn.btn-danger.btn-xs.delete-question(href='/questions/delete/'+question._id) 
-						small Delete
-		br
-		.timestamp #{question.author}
-		.timestamp Asked on : #{question.createdAt.toLocaleDateString()}
-	|
-	if answers
-		h3 #{answers.length} answers
-		each answer in answers
-			.row1.answerfield
-				.col-md-1
-					.vote-count
-						a(href="#", style="text-decoration: none")
-							i.fa.fa-arrow-up.arrowup(aria-hidden=true, style="font-size: 20px")
-							.voteNum= answer.votes
-							a(href="#")
-								i.fa.fa-arrow-down.arrowdown(aria-hidden=true,  style="font-size: 20px")
-				.col-md-11
-					.ans
-						.answer !{answer.body}
-					hr(style = "width: 90%")
-					.timestamp Answered by - <a href="/user/#{answer.author}">#{answer.author}</a> <i class="fa fa-check" aria-hidden="true"></i>
-					.timestamp - #{answer.createdAt.toLocaleDateString()}
+					a.btn.btn-info.btn-xs
+						i.fa.fa-thumbs-up(style='font-size:15px') 
+						small &nbsp; Upvote | #{question.votes}
+					|  
+					a.btn.btn-danger.btn-xs
+						i.fa.fa-thumbs-down(style='font-size:15px') 
+						small &nbsp; Downvote
+				br
+				if user
+					if user.username === question.author
+						.inline
+							a.btn.btn-info.btn-xs(href='/questions/edit/'+question._id) 
+								small Edit
+							a.btn.btn-danger.btn-xs.delete-question(href='/questions/delete/'+question._id) 
+								small Delete
+				br
+				.timestamp #{question.author}
+				.timestamp Asked on : #{question.createdAt.toLocaleDateString()}
+			|
+			if answers
+				h3 #{answers.length} answers
+				each answer in answers
+					.row1.answerfield
+						.col-md-1
+							.vote-count
+								a(href="#", style="text-decoration: none")
+									i.fa.fa-arrow-up.arrowup(aria-hidden=true, style="font-size: 20px")
+									.voteNum= answer.votes
+									a(href="#")
+										i.fa.fa-arrow-down.arrowdown(aria-hidden=true,  style="font-size: 20px")
+						.col-md-11
+							.ans
+								.answer !{answer.body}
+							hr(style = "width: 90%")
+							.timestamp Answered by - <a href="/user/#{answer.author}">#{answer.author}</a> <i class="fa fa-check" aria-hidden="true"></i>
+							.timestamp - #{answer.createdAt.toLocaleDateString()}
 
-			hr
-		hr
-	if user					
-		form(method='POST', action='/answer/post')
-			.form-group
-				label(for='formGroupExampleInput2') Answer
-				textarea#ck_editor.form-control(name='body', rows='10', placeholder='Elaborate ... ')
-			.form-group
-				input(type='hidden', name='parent', value=question._id)
-				input.btn.btn-success(type='submit', value='Post Answer')
-	else
-		h3 
-			a(href="/user/login") Login to answer
+					hr
+			if user					
+				form(method='POST', action='/answer/post')
+					.form-group
+						label(for='formGroupExampleInput2') Answer
+						textarea#ck_editor.form-control(name='body', rows='10', placeholder='Elaborate ... ')
+					.form-group
+						input(type='hidden', name='parent', value=question._id)
+						input.btn.btn-success(type='submit', value='Post Answer')
+			else
+				h3 
+					a(href="/user/login") Login to answer
+		.col-md-3.col-xs-3.col-sm-4
+			include includes/sidebar

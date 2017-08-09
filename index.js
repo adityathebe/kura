@@ -6,6 +6,7 @@ const express = require('express');
 const session = require('express-session');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
+const _ = require('lodash');
 
 const DB = require('./utils');
 
@@ -178,6 +179,37 @@ app.get('/category/:id', (req, res) => {
 // About Us
 app.get('/about', (req, res) => {
     res.render('about_us');
+});
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+// Search
+app.get("/search", (req, res) => {
+    if (req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Questions.find({ "title": regex }, (err, found) => {
+            if(err) {
+               console.log(err);
+            } else {
+                DB.getAll().then((data) => {
+                    if(_.isEmpty(found)) {
+                        req.flash('info', 'No result found!');
+                    } 
+                    res.render('home', {
+                        questions: found, 
+                        users: data[1],
+                        tags : data[2] 
+                    });
+                }, (errMsg) => {
+                    console.log(errMsg);
+                });
+           }
+       }); 
+    } else {
+        res.redirect('/');
+    }
 });
 
 // Route Files

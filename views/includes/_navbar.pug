@@ -11,24 +11,18 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         #navbar.navbar-collapse.collapse
             ul.nav.navbar-nav
                 li
-                    <form class="navbar-form navbar-right" role="search">
+                    <form class="navbar-form navbar-right" role="search" action='/search' method='GET'>
                         <div id="custom-search-input">
                             <div class="input-group">
-                                <input style="width:700px" type="text" class="form-control input-sm" placeholder="Search">
+                                <input style="width:700px" type="text" class="form-control input-sm" name="search" placeholder="Search">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-sm" type="button">
+                                    <button class="btn btn-sm" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
                             </div>
                         </div>
                     </form>
-                    //- <form class="navbar-form navbar-left" role="search">
-                    //-     <div class="form-group">
-                    //-         <input width="100%" type="text" class="form-control" placeholder="Search">
-                    //-     </div>
-                    //-     <button type="submit" class="btn btn-success">Search</button>
-                    //- </form>
             ul.nav.navbar-nav.navbar-right
                 if user
                     <li><a href="/questions/ask"><span class="fa fa-plus-circle" aria-hidden="true"></span> Ask A Question</a></li>
