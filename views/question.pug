@@ -1,0 +1,90 @@
+extends layout
+
+block content
+    .row
+        .col-md-9.col-xs-9.col-sm-8
+            .page-header.page-header-custom
+                h1#page-header-title #{question.title} <span class="badge">#{question.category} </span>
+                if question.body
+                    .well !{question.body}
+                .inline
+                    a.btn.btn-info.btn-xs
+                        i.fa.fa-thumbs-up(style='font-size:15px') 
+                        small &nbsp; Upvote | #{question.votes}
+                    |  
+                    a.btn.btn-danger.btn-xs
+                        i.fa.fa-thumbs-down(style='font-size:15px') 
+                        small &nbsp; Downvote
+                br
+                if user
+                    if user.username === question.author
+                        .inline
+                            a.btn.btn-info.btn-xs(href='/questions/edit/'+question._id) 
+                                small Edit
+                            a.btn.btn-danger.btn-xs.delete-question(href='/questions/delete/'+question._id) 
+                                small Delete
+                br
+                .timestamp #{question.author}
+                .timestamp Asked on : #{question.createdAt.toLocaleDateString()}
+            |
+            if answers
+                h3 #{answers.length} answers
+                each answer in answers
+                    .row1.answerfield
+                        .col-md-1
+                            .vote-count
+                                a(href="#", style="text-decoration: none")
+                                    i.fa.fa-arrow-up.arrowup(aria-hidden=true, style="font-size: 20px")
+                                    .voteNum= answer.votes
+                                    a(href="#")
+                                        i.fa.fa-arrow-down.arrowdown(aria-hidden=true,  style="font-size: 20px")
+                        .col-md-11
+                            .ans
+                                .answer !{answer.body}
+                            hr(style = "width: 90%")
+                            if user
+                                if user.username === answer.author
+                                    .inline.pull-right
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i> Edit</button>
+                                        <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content" >
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Edit Answer</h4>
+                                                    </div>
+                                                    <form action="/answer/edit" method="POST">
+                                                        <div class="modal-body">
+                                                            <textarea name='body' id="ck_editor"> !{answer.body} </textarea >
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input type="submit" class="btn btn-success">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <input type='hidden' value='#{question._id}' name="q_id">
+                                                            <input type='hidden' value='#{answer._id}' name="a_id">
+                                                        </div>
+                                                    </form> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        |  
+                                        <a class="btn btn-default" href="/answer/delete/#{answer._id}"><i class="fa fa-trash-o"></i> Delete</a>
+                            br
+                            br
+                            .timestamp Answered by - <a href="/user/#{answer.author}">#{answer.author}</a> <i class="fa fa-check" aria-hidden="true"></i>
+                            .timestamp - #{answer.createdAt.toLocaleDateString()}
+
+                    hr
+            if user                 
+                form(method='POST', action='/answer/post')
+                    .form-group
+                        label(for='formGroupExampleInput2') Answer
+                        textarea#ck_editor.form-control(name='body', rows='10', placeholder='Elaborate ... ')
+                    .form-group
+                        input(type='hidden', name='parent', value=question._id)
+                        input.btn.btn-success(type='submit', value='Post Answer')
+            else
+                h3 
+                    a(href="/user/login") Login to answer
+        .col-md-3.col-xs-3.col-sm-4
+            include includes/sidebar
