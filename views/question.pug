@@ -45,7 +45,26 @@ block content
 							if user
 								if user.username === answer.author
 									.inline.pull-right
-										<a class="btn btn-default" href="#"><i class="fa fa-pencil-square-o"></i> Edit</a>
+										<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i> Edit</button>
+										<div class="modal fade" id="myModal" role="dialog">
+											<div class="modal-dialog">
+												<form class="modal-content" action="/answers/edit">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Edit Answer</h4>
+													</div>
+													<div class="modal-body">
+														<div id="ck_editor">
+														<p>Some text in the modal.</p>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+														<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+													</div>
+												</form>
+											</div>
+										</div>
 										|  
 										<a class="btn btn-default" href="#"><i class="fa fa-trash-o"></i> Delete</a>
 							br
