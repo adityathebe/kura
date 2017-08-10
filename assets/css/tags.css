@@ -1,5 +1,6 @@
 .catgbtns {
-    border: 2px solid #337ab7;
+	background-color: #ffffff;
+    border: 1px solid #337ab7;
     color: #337ab7;
     font-weight: bold;
     border-radius: 10px;
@@ -8,4 +9,8 @@
     padding: 2px;
     display: inline-block;
     text-align: center;
+}
+
+a:hover {
+    text-decoration: none;
 }
