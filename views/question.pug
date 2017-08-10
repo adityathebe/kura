@@ -42,12 +42,13 @@ block content
 							.ans
 								.answer !{answer.body}
 							hr(style = "width: 90%")
-							
-							if current_user
-								if current_user.username === answer.author
-									.inline
-										a.btn.btn-info.btn-xs(href='#') Edit
-										a.btn.btn-danger.btn-xs.delete-question(href='#') Delete
+							if user
+								if user.username === answer.author
+									.inline.pull-right
+										<a class="btn btn-default" href="#"><i class="fa fa-pencil-square-o"></i> Edit</a>
+										|  
+										<a class="btn btn-default" href="#"><i class="fa fa-trash-o"></i> Delete</a>
+							br
 							br
 							.timestamp Answered by - <a href="/user/#{answer.author}">#{answer.author}</a> <i class="fa fa-check" aria-hidden="true"></i>
 							.timestamp - #{answer.createdAt.toLocaleDateString()}
