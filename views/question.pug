@@ -43,8 +43,8 @@ block content
 								.answer !{answer.body}
 							hr(style = "width: 90%")
 							
-							if current_user
-								if current_user.username === answer.author
+							if user
+								if user.username === answer.author
 									.inline
 										a.btn.btn-info.btn-xs(href='#') Edit
 										a.btn.btn-danger.btn-xs.delete-question(href='#') Delete

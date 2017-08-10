@@ -32,4 +32,21 @@ router.post('/post', (req, res) => {
     }
 });
 
+// Edit Answer
+router.post('/edit', (req, res) => {
+    let answer = {};
+    answer.body = req.body.body;
+    answer.updatedAt = new Date();
+
+    let query = {_id:req.params.id}
+
+    AnswerModel.update(query, answer, (err) => {
+        if(err) {
+            return console.log(err);
+        } else {
+            return console.log('Answer Edited!');
+        }
+    });
+})
+
 module.exports = router;

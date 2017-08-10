@@ -21,6 +21,7 @@
     "express-validator": "^3.2.1",
     "lodash": "^4.17.4",
     "mongoose": "^4.11.3",
-    "pug": "^2.0.0-rc.2"
+    "pug": "^2.0.0-rc.2",
+    "socket.io": "^2.0.3"
   }
 }

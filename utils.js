@@ -98,7 +98,7 @@ const getAll = (data, error) => {
     let info = []
     return new Promise( (resolve, reject) => {
         getQuestion({}).then((questions) => {
-            info.push(questions);
+            info.push(_.reverse(questions));
             return getUser({});
         }).then((users) => {
             info.push(users);
