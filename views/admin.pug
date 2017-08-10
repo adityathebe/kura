@@ -6,17 +6,21 @@ block content
     hr
     .row
         .col-md-8
-            .row
+            .row(style="text-align:center")
                 h3 Statistics
-                .col-md-4
+                .col-md-3
                     .well
                         h4.card-title #{questions.length}
                         p questions
-                .col-md-4
+                .col-md-3
+                    .well
+                        h4.card-title #{answers.length}
+                        p Answers
+                .col-md-3
                     .well
                         h4.card-title #{subjects.length}
                         p Subjects
-                .col-md-4
+                .col-md-3
                     .well
                         h4.card-title #{users.length}
                         p Users

@@ -183,7 +183,7 @@ router.get('/:username', (req, res) => {
                         res.render('userinfo', {
                             questions: question,
                             answers: answers,
-                            user : user,
+                            current_user : user,
                             votes: totalVotes
                         });
                     });

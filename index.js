@@ -124,7 +124,8 @@ app.get('/admin', requireLogin, (req, res) => {
             res.render('admin', {
                 questions : data[0],
                 users: data[1],
-                subjects : data[2]
+                subjects : data[2],
+                answers : data[3]
             });
         });
     } else {

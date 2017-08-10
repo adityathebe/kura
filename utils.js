@@ -47,6 +47,28 @@ const getQuestion = (query) => {
             });        
         }
     });    
+};
+
+const getAnswer = (query) => {
+    return new Promise((resolve, reject) => {
+        if(_.isEmpty(query)) {
+            AnswerModel.find({}, (err, answers) => {
+                if (answers) {
+                    resolve(answers);
+                } else {
+                    reject('No answers found')
+                }
+            });   
+        } else {
+            AnswerModel.findOne(query, (err, answer) => {
+                if (answer) {
+                    resolve(answer);
+                } else {
+                    reject('No answer found')
+                }
+            });        
+        }
+    });    
 }
 
 const getTags = (query) => {
@@ -83,6 +105,9 @@ const getAll = (data, error) => {
             return getTags({});
         }).then((tags) => {
             info.push(tags);
+            return getAnswer({});
+        }).then((answers) => {
+            info.push(answers);
             resolve(info);
         }).catch((errMsg) => {
             reject(errMsg);
@@ -93,5 +118,6 @@ const getAll = (data, error) => {
 module.exports = {
     getUser,
     getQuestion,
-    getAll
+    getAll,
+    getAnswer
 }

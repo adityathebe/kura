@@ -120,7 +120,7 @@ router.post('/ask', (req, res) => {
             if (err) {
                 return console.log(err);
             } else {
-                req.flash('success', 'Article Added');
+                req.flash('success', 'Question Posted');
                 res.redirect(`/questions/${question._id}`);
             }
         });

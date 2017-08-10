@@ -16,21 +16,21 @@ block content
     .col-md-4
         div(style="text-align: center")
             hr
-            h1(style="font-family: 'Raleway'") #{user.firstName} #{user.lastName} 
-                <small> #{user.username} </small>
+            h1(style="font-family: 'Raleway'") #{current_user.firstName} #{current_user.lastName} 
+                <small> #{current_user.username} </small>
             hr
-        if user.imgsrc
+        if current_user.imgsrc
             div(style="float: center")
-                img(width="100%", src=user.imgsrc)
+                img(width="100%", src=current_user.imgsrc)
                 hr
         .well
-            h3 #{user.faculty}
+            h3 #{current_user.faculty}
                 br
-                small Year - #{user.year} | semester - #{user.semester}
+                small Year - #{current_user.year} | semester - #{current_user.semester}
             hr
-            if user.bio
+            if current_user.bio
                 h3 
-                    small= user.bio
+                    small= current_user.bio
                 hr
             h3 <i class='fa fa-thumbs-up'></i> 
                 small #{votes} karmas
