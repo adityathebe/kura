@@ -16,3 +16,10 @@ ul.list-group
     each user in users
         li.list-group-item 
             <a href='/user/#{user.username}'> #{user.username} </a>
+
+hr
+h3 KU News
+ul.list-group
+    each news in kuNews
+        a(href = news.permalink)
+            li.list-group-item.question_list  #{news.title}

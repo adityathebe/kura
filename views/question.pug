@@ -47,7 +47,7 @@ block content
                                     .inline.pull-right
                                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i> Edit</button>
                                         <div class="modal fade" id="myModal" role="dialog">
-                                            <div class="modal-dialog">
+                                            <div class="modal-dialog modal-lg">
                                                 <div class="modal-content" >
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -71,7 +71,7 @@ block content
                                         <a class="btn btn-default" href="/answer/delete/#{answer._id}"><i class="fa fa-trash-o"></i> Delete</a>
                             br
                             br
-                            .timestamp Answered by - <a href="/user/#{answer.author}">#{answer.author}</a> <i class="fa fa-check" aria-hidden="true"></i>
+                            .timestamp Answered by - <a href="/user/#{answer.author}">#{answer.author}</a>
                             .timestamp - #{answer.createdAt.toLocaleDateString()}
 
                     hr

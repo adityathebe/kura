@@ -111,7 +111,8 @@ app.get('/', (req, res) => {
         res.render('home', {
             questions : data[0],
             users: data[1],
-            tags : data[2]
+            tags : data[2],
+            kuNews : data[4]
         });
     });
 });
@@ -125,7 +126,8 @@ app.get('/admin', requireLogin, (req, res) => {
                 questions : data[0],
                 users: data[1],
                 subjects : data[2],
-                answers : data[3]
+                answers : data[3],
+                kuNews : data[4]
             });
         });
     } else {

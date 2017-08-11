@@ -1,9 +1,19 @@
 const _ = require('lodash');
+const request = require('request');
 
 let QuestionModel = require('./models/question');
 let AnswerModel = require('./models/answer');
 let UserModel = require('./models/user');
 let CategoryModel = require('./models/category');
+
+const kuNews = () => {
+    return new Promise((resolve, reject) => {
+        let url = 'https://ku-gex.herokuapp.com/';
+        request( {url, json:true}, (error, response, body) => {
+            resolve(body.slice(0, 5));
+        });        
+    });
+};
 
 const getUser = (query) => {
     return new Promise((resolve, reject) => {
@@ -108,7 +118,10 @@ const getAll = (data, error) => {
             return getAnswer({});
         }).then((answers) => {
             info.push(answers);
-            resolve(info);
+            return kuNews();
+        }).then((news) => {
+            info.push(news);
+            resolve(info)
         }).catch((errMsg) => {
             reject(errMsg);
         });        
