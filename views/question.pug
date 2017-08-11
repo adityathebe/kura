@@ -4,27 +4,27 @@ block content
     .row
         .col-md-9.col-xs-9.col-sm-8
             .page-header.page-header-custom
-                h1#page-header-title #{question.title} <span class="badge">#{question.category} </span>
-                if question.body
-                    .well !{question.body}
+                h1#page-header-title #{q.title} <span class="badge">#{q.category} </span>
+                if q.body
+                    .well !{q.body}
                 .inline
                     a.btn.btn-info.btn-xs
                         i.fa.fa-thumbs-up(style='font-size:15px') 
-                        small &nbsp; Upvote | #{question.votes}
+                        small &nbsp; Upvote | #{q.votes}
                     |  
                     a.btn.btn-danger.btn-xs
                         i.fa.fa-thumbs-down(style='font-size:15px') 
                         small &nbsp; Downvote
                 br
                 if user
-                    if user.username === question.author
+                    if user.username === q.author
                         .inline.pull-right
                             <a href="/questions/edit/"+question._id class="btn btn-default"><i class="fa fa-pencil-square-o"></i> Edit</a>
                             <a href="/questions/delete/"+question._id class="btn btn-default" href="#"><i class="fa fa-trash-o"></i> Delete</a>
                 br
                 br
-                .timestamp #{question.author}
-                .timestamp Asked on : #{question.createdAt.toLocaleDateString()}
+                .timestamp #{q.author}
+                .timestamp Asked on : #{q.createdAt.toLocaleDateString()}
             |
             if answers
                 h3 #{answers.length} answers
@@ -59,7 +59,7 @@ block content
                                                         <div class="modal-footer">
                                                             <input type="submit" class="btn btn-success">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <input type='hidden' value='#{question._id}' name="q_id">
+                                                            <input type='hidden' value='#{q._id}' name="q_id">
                                                             <input type='hidden' value='#{answer._id}' name="a_id">
                                                         </div>
                                                     </form> 
@@ -80,7 +80,7 @@ block content
                         label(for='formGroupExampleInput2') Answer
                         textarea#ck_editor.form-control(name='body', rows='10', placeholder='Elaborate ... ')
                     .form-group
-                        input(type='hidden', name='parent', value=question._id)
+                        input(type='hidden', name='parent', value=q._id)
                         input.btn.btn-success(type='submit', value='Post Answer')
             else
                 h3 

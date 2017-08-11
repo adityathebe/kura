@@ -208,7 +208,8 @@ app.get("/search", (req, res) => {
                     res.render('home', {
                         questions: found, 
                         users: data[1],
-                        tags : data[2] 
+                        tags : data[2],
+                        kuNews : data[4],
                     });
                 }, (errMsg) => {
                     console.log(errMsg);

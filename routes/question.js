@@ -139,8 +139,9 @@ router.get('/:id', (req, res) => {
                         questions : data[0],
                         users: data[1],
                         tags : data[2],
-                        question: question,
-                        answers: answers
+                        kuNews : data[4],
+                        q: question,
+                        answers: answers,
                     });
                 });
             });
