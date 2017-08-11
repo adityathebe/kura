@@ -18,11 +18,10 @@ block content
                 br
                 if user
                     if user.username === question.author
-                        .inline
-                            a.btn.btn-info.btn-xs(href='/questions/edit/'+question._id) 
-                                small Edit
-                            a.btn.btn-danger.btn-xs.delete-question(href='/questions/delete/'+question._id) 
-                                small Delete
+                        .inline.pull-right
+                            <a href="/questions/edit/"+question._id class="btn btn-default"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                            <a href="/questions/delete/"+question._id class="btn btn-default" href="#"><i class="fa fa-trash-o"></i> Delete</a>
+                br
                 br
                 .timestamp #{question.author}
                 .timestamp Asked on : #{question.createdAt.toLocaleDateString()}
