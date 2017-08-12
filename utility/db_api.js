@@ -1,10 +1,10 @@
 const _ = require('lodash');
 const request = require('request');
 
-let QuestionModel = require('./models/question');
-let AnswerModel = require('./models/answer');
-let UserModel = require('./models/user');
-let CategoryModel = require('./models/category');
+let QuestionModel = require('../models/question');
+let AnswerModel = require('../models/answer');
+let UserModel = require('../models/user');
+let CategoryModel = require('../models/category');
 
 const kuNews = () => {
     return new Promise((resolve, reject) => {

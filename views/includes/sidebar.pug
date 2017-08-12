@@ -1,25 +1,26 @@
-h3 Top Questions
-ul.list-group.question_list_group
-    each question in questions
-        a(href = '/questions/' + question._id)
-            li.list-group-item.question_list  #{question.title}
+.container
+    h3 Top Questions
+    ul.list-group.question_list_group
+        each question in questions
+            a(href = '/questions/' + question._id)
+                li.list-group-item.question_list  #{question.title}
 
-h3 Subjects
-br     
-each tag in tags
-        a.catgbtns(href='/category/'+tag.name) #{tag.name}
-hr
+    h3 Subjects
+    br     
+    each tag in tags
+            a.catgbtns(href='/category/'+tag.name) #{tag.name}
+    hr
 
-h3 Top Users
-br
-ul.list-group
-    each user in users
-        li.list-group-item 
-            <a href='/user/#{user.username}'> #{user.username} </a>
+    h3 Top Users
+    br
+    ul.list-group
+        each user in users
+            li.list-group-item 
+                <a href='/user/#{user.username}'> #{user.username} </a>
 
-hr
-h3 KU News
-ul.list-group
-    each news in kuNews
-        a(href = news.permalink)
-            li.list-group-item.question_list  #{news.title}
+    hr
+    h3 KU News
+    ul.list-group
+        each news in kuNews
+            a(href = news.permalink)
+                li.list-group-item.question_list  #{news.title}

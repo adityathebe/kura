@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const DB = require('../utils');
+const DB = require('../utility/db_api');
 
 // Bring in Question Model
 let Questions = require('../models/question');

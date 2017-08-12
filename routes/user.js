@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Mailer = require('../utility/nodemailer');
 
 // Function to check if user is logged in
 function requireLogin (req, res, next) {
@@ -164,6 +165,27 @@ router.post('/account', requireLogin, (req, res) => {
             req.flash('info', 'Wrong Password');
             res.redirect('/user/account');
         }        
+    });
+});
+
+// Forgot Password
+router.post('/forgot', (req, res) => {
+    let email = req.body.email;
+    let username = req.body.username;
+
+    UserModel.findOne({email, username}, (err, user) => {
+        if (user) {
+            Mailer.sendPass(email, username, user.password).then((msg) => {
+                req.flash('info', msg);
+                res.redirect('/user/login');
+            }, (err) => {
+                req.flash('info', err);
+                res.redirect('/user/login');
+            });
+        } else {
+            req.flash('info', 'No User found');
+            res.redirect('/user/login')
+        }
     });
 });
 

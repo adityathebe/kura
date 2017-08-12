@@ -8,7 +8,7 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const _ = require('lodash');
 
-const DB = require('./utils');
+const DB = require('./utility/db_api');
 
 const app = express();
 const port = process.env.PORT || 3000;
