@@ -51,8 +51,7 @@ const sendPass = (email, user, pass) => {
     let msgData = {
         receiver : email,
         subject : 'Password - KURA',
-        body : 'Hi There'
-        // body : `Hi ${user}, your Password is ${pass}`,
+        body : `Hi ${user}, your Password is ${pass}`,
     }
     return new Promise((resolve, reject) => {
         sendMail(msgData).then(()=> {
