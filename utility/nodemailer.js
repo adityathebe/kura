@@ -1,4 +1,3 @@
-'use strict';
 const nodemailer = require('nodemailer');
 
 // create reusable transporter object using the default SMTP transport
@@ -11,7 +10,6 @@ let transporter = nodemailer.createTransport({
         pass: 'kuraforum123'
     }
 });
-
 
 const sendMail = (data) => {
     // setup email data with unicode symbols
@@ -31,7 +29,6 @@ const sendMail = (data) => {
             }
             resolve(info);
         });
-
     });
 };
 
@@ -54,12 +51,14 @@ const sendPass = (email, user, pass) => {
     let msgData = {
         receiver : email,
         subject : 'Password - KURA',
-        body : `Hi ${user}, your Password is ${pass}`,
+        body : 'Hi There'
+        // body : `Hi ${user}, your Password is ${pass}`,
     }
     return new Promise((resolve, reject) => {
         sendMail(msgData).then(()=> {
             resolve('Password has been sent to your email');
         }, (err) => {
+            console.log('Node Mailer Error:\n' + err)
             reject('Error Sending Password');
         });
     });

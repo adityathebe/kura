@@ -18,8 +18,10 @@ ul.list-group
             <a href='/user/#{user.username}'> #{user.username} </a>
 
 hr
-h3 KU News
-ul.list-group
-    each news in kuNews
-        a(href = news.permalink)
-            li.list-group-item.question_list  #{news.title}
+
+if kuNews.length > 0
+    h3 KU News
+    ul.list-group
+        each news in kuNews
+            a(href = news.permalink)
+                li.list-group-item.question_list  #{news.title}

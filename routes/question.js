@@ -136,10 +136,10 @@ router.get('/:id', (req, res) => {
             AnswerModel.find({parent: req.params.id}, (err, answers) => {
                 DB.getAll().then((data) => {
                     res.render('question', {
-                        questions : data[0],
-                        users: data[1],
-                        tags : data[2],
-                        kuNews : data[4],
+                        users: data.users,
+                        tags : data.subjects,
+                        kuNews : data.news,
+                        questions : data.questions,
                         q: question,
                         answers: answers,
                     });

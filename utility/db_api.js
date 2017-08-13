@@ -10,7 +10,11 @@ const kuNews = () => {
     return new Promise((resolve, reject) => {
         let url = 'https://ku-gex.herokuapp.com/';
         request( {url, json:true}, (error, response, body) => {
-            resolve(body.slice(0, 5));
+            if(body) {
+                resolve(body.slice(0, 5));                
+            } else {
+                resolve([]);
+            }
         });        
     });
 };
@@ -105,23 +109,23 @@ const getTags = (query) => {
 
 const getAll = (data, error) => {
     // info = [questions, users, tags]
-    let info = []
+    let info = {};
     return new Promise( (resolve, reject) => {
         getQuestion({}).then((questions) => {
-            info.push(_.reverse(questions));
+            info['questions'] = _.reverse(questions);
             return getUser({});
         }).then((users) => {
-            info.push(users);
+            info['users'] = users;
             return getTags({});
         }).then((tags) => {
-            info.push(tags);
+            info['subjects'] = tags;
             return getAnswer({});
         }).then((answers) => {
-            info.push(answers);
+            info['answers'] = answers;
             return kuNews();
         }).then((news) => {
-            info.push(news);
-            resolve(info)
+            info['news'] = news;
+            resolve(info);
         }).catch((errMsg) => {
             reject(errMsg);
         });        

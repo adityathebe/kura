@@ -90,9 +90,7 @@ router.post('/register', (req, res) => {
             req.flash('danger', 'User with that username already exists');
             res.redirect('/user/register');
         }
-    })
-
-    
+    });    
 });
 
 // Logout
@@ -110,7 +108,7 @@ router.get('/edit', requireLogin, (req, res) => {
 // Edit account
 router.get('/account', requireLogin, (req, res) => {
     res.render('edit_account');
-})
+});
 
 // Edit Profile
 router.post('/edit', requireLogin, (req, res) => {
@@ -217,6 +215,5 @@ router.get('/:username', (req, res) => {
         }
     }); 
 });
-
 
 module.exports = router;
