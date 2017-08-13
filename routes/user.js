@@ -55,15 +55,14 @@ router.post('/register', (req, res) => {
     req.checkBody('password', 'Password must be at least 6 characters long').notEmpty().len(8, 30);
     req.checkBody('email', 'Invalid Email').isEmail();
 
-    UserModel.findOne({username: req.body.userName}, (err, user) => {
-        if(!user) {
-            var errors = req.validationErrors();
-            if (errors) {
-                res.render('register', {
-                    title : 'Sign Up',
-                    errors: errors
-                });
-            } else {
+    var errors = req.validationErrors();
+    if (errors) {
+        res.render('register', {
+            errors: errors
+        });
+    } else {
+        UserModel.findOne({username: req.body.userName}, (err, user) => {
+            if(!user) {
                 let user = new UserModel({
                     username : req.body.userName,
                     firstName : req.body.firstName,
@@ -85,12 +84,12 @@ router.post('/register', (req, res) => {
                         res.redirect('/');
                     }
                 });
+            } else {
+                req.flash('danger', 'User with that username already exists');
+                res.redirect('/user/register');
             }
-        } else {
-            req.flash('danger', 'User with that username already exists');
-            res.redirect('/user/register');
-        }
-    });    
+        });
+    }   
 });
 
 // Logout
@@ -116,54 +115,75 @@ router.post('/edit', requireLogin, (req, res) => {
     req.checkBody('lastname', 'Invalid Last Name').notEmpty();
     req.checkBody('bio', 'Too Long Description').len(0, 160);
     
-    UserModel.findOne({_id: req.user._id}, (err, user) => {
-        if(err) {
-            return console.log(err);
-        }
+    // Get Errors
+    let errors = req.validationErrors();
 
-        user.firstname = req.body.firstname;
-        user.lastname = req.body.lastname;
-        user.year = req.body.year;
-        user.semester = req.body.semester;
-        user.imgsrc = req.body.imgsrc;
-        user.bio = req.body.bio;
-
-        user.save((err, newuser) => {
+    if (errors) {
+        res.render('edit_profile', {
+            errors: errors
+        });
+    } else {
+        UserModel.findOne({_id: req.user._id}, (err, user) => {
             if(err) {
-                console.log(err);
-                req.flash('info', 'Could not update profile');
-            } else {
-                req.flash('success', 'Successfully edited');                
+                return console.log(err);
             }
-            res.redirect('/user/'+user.username);
-        })
-    });
-});
 
-// Edit Account
-router.post('/account', requireLogin, (req, res) => {
-    req.checkBody('password', 'Password must be at least 6 characters long').notEmpty().len(8, 30);
-    
-    UserModel.findOne({_id: req.user._id}, (err, user) => {
-        if(err) {
-            return console.log(err);
-        }
-        if(user.password === req.body.oldpass) {
-            user.password = req.body.newpass;
+            user.firstname = req.body.firstname;
+            user.lastname = req.body.lastname;
+            user.year = req.body.year;
+            user.semester = req.body.semester;
+            user.imgsrc = req.body.imgsrc;
+            user.bio = req.body.bio;
+
             user.save((err, newuser) => {
                 if(err) {
                     console.log(err);
                     req.flash('info', 'Could not update profile');
                 } else {
-                    req.flash('success', 'Password Changed');                
+                    req.flash('success', 'Successfully edited');                
                 }
+                res.redirect('/user/'+user.username);
+            })
+        });
+    }
+});
+
+// Edit Account
+router.post('/account', requireLogin, (req, res) => {
+    req.checkBody('newpass', 'Password must be at least 6 characters long').notEmpty().len(6, 20);
+    req.checkBody('newpass', 'Passwords must match').equals(req.body.newpass_confirm);
+    
+    // Get Errors
+    let errors = req.validationErrors();
+
+    if (errors) {
+        res.render('edit_account', {
+            errors: errors
+        });
+    } else {
+        UserModel.findOne({_id: req.user._id}, (err, user) => {
+            if(err) {
+                return console.log(err);
+            }
+
+            if(user.password === req.body.oldpass) {
+                user.password = req.body.newpass;
+                user.save((err, newuser) => {
+                    if(err) {
+                        console.log(err);
+                        req.flash('info', 'Could not update profile');
+                    } else {
+                        req.flash('success', 'Password Changed');                
+                    }
+                    res.redirect('/user/account');
+                });            
+            } else {
+                req.flash('info', 'Wrong Password');                
                 res.redirect('/user/account');
-            });
-        } else {
-            req.flash('info', 'Wrong Password');
-            res.redirect('/user/account');
-        }        
-    });
+            }
+            
+        });
+    }
 });
 
 // Forgot Password

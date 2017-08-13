@@ -7,6 +7,7 @@ const express = require('express');
 const session = require('express-session');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
+const favicon = require('serve-favicon');
 
 // MongoDB Database
 mongoose.connect('mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura');
@@ -62,7 +63,10 @@ app.use(expressValidator({
 }));
 
 // Express Session Middleware
-app.use(session({secret: 'kura_forum_123', resave: true, saveUninitialized: true}));
+app.use(session({secret: 'kura_forum_123', resave: false, saveUninitialized: false}));
+
+// Serve Favicon
+app.use(favicon(path.join(__dirname, 'assets', 'image', 'favicon.png')))
 
 // Check if user is logged in
 let UserModel = require('./models/user');
