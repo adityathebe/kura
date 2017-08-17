@@ -15,7 +15,7 @@ block content
                             ul.list-inline
                                 <li class="card-subtitle mb-2 text-muted"><span class="badge"> #{question.category}</span> </li>
                                 <li style="font-family: 'Pacifico';"><small>Votes : #{question.votes}</small></li>
-                                li <small> Submitted on : #{question.createdAt.toLocaleDateString()}</small>
+                                li <small> Submitted on : #{moment(question.createdAt).fromNow()}</small>
                             span.label.label-default #{question.author}
                             <hr>
                             p.card-text !{question.body.slice(0, 300)}

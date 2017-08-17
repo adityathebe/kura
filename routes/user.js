@@ -72,7 +72,8 @@ router.post('/register', (req, res) => {
                     password : req.body.password,
                     year: req.body.year,
                     semester : req.body.semester,
-                    faculty : req.body.faculty
+                    faculty : req.body.faculty,
+                    joined : new Date(),
                 });
 
                 user.save((err) => {

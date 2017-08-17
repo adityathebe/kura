@@ -13,6 +13,7 @@ let userSchema = mongoose.Schema({
     faculty   : { type: String, required : true },
     year      : { type: Number, required : true },
     semester  : { type: Number, required : true },
+    joined    : { type: Date,   required : true }
 });
 
 module.exports = mongoose.model('User', userSchema);

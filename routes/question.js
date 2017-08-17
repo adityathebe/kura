@@ -114,6 +114,7 @@ router.post('/ask', (req, res) => {
             title: req.body.title,
             author: req.user.username,
             body: req.body.body || '',
+            createdAt : new Date(),
             category: req.body.category            
         });
         question.save((err) => {

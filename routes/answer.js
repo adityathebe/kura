@@ -29,6 +29,7 @@ router.post('/post', requireLogin, (req, res) => {
         let answer = new AnswerModel({
             body : req.body.body,
             author : req.user.username,
+            createdAt : new Date(),
             parent : req.body.parent
         });
 

@@ -24,7 +24,7 @@ block content
                 br
                 br
                 .timestamp #{q.author}
-                .timestamp Asked on : #{q.createdAt.toLocaleDateString()}
+                .timestamp #{moment(q.createdAt).fromNow()}
             |
             if answers
                 h3 #{answers.length} answers
@@ -71,7 +71,7 @@ block content
                             br
                             br
                             .timestamp Answered by - <a href="/user/#{answer.author}">#{answer.author}</a>
-                            .timestamp - #{answer.createdAt.toLocaleDateString()}
+                            .timestamp - #{moment(answer.createdAt).fromNow()}
 
                     hr
             if user                 

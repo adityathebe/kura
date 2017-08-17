@@ -17,7 +17,7 @@ block content
 												code
 													a(href='/category/'+question.category)=question.category
 											<li style="font-family: 'Pacifico';"><small>Votes : #{question.votes}</small></li>
-											li <small> Submitted on : #{question.createdAt.toLocaleDateString()}</small>
+											li <small> Submitted : #{moment(question.createdAt).fromNow()}</small>
 										span.label.label-default #{question.author}
 										<hr>
 										p.card-text !{question.body.slice(0, 300)}

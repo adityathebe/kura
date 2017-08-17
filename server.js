@@ -10,8 +10,11 @@ const flash = require('connect-flash');
 const favicon = require('serve-favicon');
 
 // MongoDB Database
-mongoose.connect('mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura');
-// mongoose.connect('mongodb://127.0.0.1/kura');
+if (process.env.PORT) {
+    mongoose.connect('mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura');
+} else {
+    mongoose.connect('mongodb://127.0.0.1/kura');    
+}
 
 let db = mongoose.connection;
 
@@ -29,6 +32,9 @@ const port = process.env.PORT || 3000;
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// Set Local Variables
+app.locals.moment = require('moment');
 
 // Body Parser
 app.use(bodyparser.urlencoded({ extended: false }));

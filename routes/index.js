@@ -4,6 +4,9 @@ const router = express.Router();
 // Custom Modules
 const DB = require('../utility/db_api');
 
+// Fetching Models
+let Questions = require('../models/question');
+
 // Home Page
 router.get('/', (req, res) => {
     DB.getAll().then((data) => {
