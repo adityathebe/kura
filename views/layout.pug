@@ -1,4 +1,4 @@
-doctype html
+sdoctype html
 html
     head
         <meta charset="utf-8">
@@ -37,12 +37,13 @@ html
                     .alert.alert-danger #{error.msg}
             block content
 
+        include includes/_footer.pug
         //- External Scripts
         script(src="/jquery/jquery.js")
         script(src="/js/bootstrap.js")
+        script(src="/socket.io/socket.io.js")
+        script(src="/js/socket-io.js")
 
         //- Ck Editor
         script(src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js")
         script(src="/js/ck_editor.js")
-
-        include includes/_footer.pug

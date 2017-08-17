@@ -1,6 +1,7 @@
 // Third Party Modules - Dependencies
 const pug = require('pug');
 const path = require('path');
+const http = require('http');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 const express = require('express');
@@ -8,9 +9,10 @@ const session = require('express-session');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const favicon = require('serve-favicon');
+const socketIO = require('socket.io');
 
 // MongoDB Database
-if (process.env.PORT) {
+if (process.env.NODE_ENV === 'production') {
     mongoose.connect('mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura');
 } else {
     mongoose.connect('mongodb://127.0.0.1/kura');    
@@ -25,9 +27,26 @@ db.on('error', (err) => {
     console.log('Connected to mongoDb')
 });
 
-// Initiate Express App
-const app = express();
+// Socket-IO
+let app = express();
+var server = http.createServer(app);
+var io = socketIO(server);
 const port = process.env.PORT || 3000;
+
+app.locals.onlineUsers = 0;
+io.on('connection', (socket) => {
+    app.locals.onlineUsers++;
+    io.emit('user-change', {
+        onlineuser : app.locals.onlineUsers
+    });
+
+    socket.on('disconnect', () => {
+        app.locals.onlineUsers--;
+        io.emit('user-change', {
+            onlineuser : app.locals.onlineUsers
+        });
+    });
+});
 
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -121,6 +140,6 @@ app.get('*', (req, res) => {
     res.render('404_page');
 });
 
-app.listen(port, ()=> {
+server.listen(port, ()=> {
 	console.log(`Listening at port ${port}`);
 });

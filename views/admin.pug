@@ -24,7 +24,13 @@ block content
                     .well
                         h4.card-title #{users.length}
                         p Users
-            hr
+            .row(style="text-align:center")
+                .col-md-6
+                    h3 Online Users
+                    .well
+                        .card-title 
+                            h2#online-user-field #{onlineUsers-1}
+                        p Users
             .row
                 h3 New Questions
                 ul.list-group
