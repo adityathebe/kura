@@ -122,9 +122,6 @@ const getAll = (data, error) => {
             return getAnswer({});
         }).then((answers) => {
             info['answers'] = answers;
-            return kuNews();
-        }).then((news) => {
-            info['news'] = news;
             resolve(info);
         }).catch((errMsg) => {
             reject(errMsg);

@@ -5,9 +5,9 @@ ul.list-group.question_list_group
             li.list-group-item.question_list  #{question.title}
 
 h3 Subjects
-br     
+br
 each tag in tags
-        a.catgbtns(href='/category/'+tag.name) #{tag.name}
+    a.catgbtns(href='/category/'+tag.name) #{tag.name}
 hr
 
 h3 Top Users
@@ -19,8 +19,8 @@ ul.list-group
 
 hr
 
-h3 KU News
-if kuNews.length > 0
+if kuNews
+    h3 KU News
     ul.list-group
         each news in kuNews
             a(href = news.permalink)

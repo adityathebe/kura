@@ -8,6 +8,13 @@ socket.on('disconnect', function() {
     console.log('Disconnected from server');
 });
 
-socket.on('user-change', function(data) {
-    jQuery('#online-user-field').html(data.onlineuser - 1)
-})
+socket.on('updated-stats', function(data) {
+    jQuery('#online-user-field').html(data - 1);
+});
+
+var visitorData = {
+    referringSite: document.referrer,
+    page: location.pathname,
+    device : navigator.userAgent
+}
+socket.emit('visitor-data', visitorData);

@@ -33,20 +33,25 @@ var server = http.createServer(app);
 var io = socketIO(server);
 const port = process.env.PORT || 3000;
 
-app.locals.onlineUsers = 0;
+let visitorsData = {};
 io.on('connection', (socket) => {
-    app.locals.onlineUsers++;
-    io.emit('user-change', {
-        onlineuser : app.locals.onlineUsers
+    socket.on('visitor-data', (data) => {
+        visitorsData[socket.id] = data;
+
+        io.emit('updated-stats', getActiveUsers());
     });
 
     socket.on('disconnect', () => {
-        app.locals.onlineUsers--;
-        io.emit('user-change', {
-            onlineuser : app.locals.onlineUsers
-        });
+        delete visitorsData[socket.id];
+
+        io.emit('updated-stats', getActiveUsers());
     });
 });
+
+// get the total active users on our site
+function getActiveUsers() {
+    return Object.keys(visitorsData).length;
+}
 
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
