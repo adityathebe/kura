@@ -21,12 +21,12 @@ router.get('/', (req, res) => {
 
 // About Us
 router.get('/about', (req, res) => {
-    res.render('about_us');
+    res.render('info/about_us');
 });
 
 // Contact Us
 router.get('/contact', (req, res) => {
-    res.render('contact_us');
+    res.render('info/contact_us');
 });
 
 // Category Page

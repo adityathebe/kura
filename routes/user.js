@@ -102,12 +102,12 @@ router.get('/logout', (req,res) => {
 
 // Edit profile
 router.get('/edit', requireLogin, (req, res) => {
-    res.render('edit_profile');
+    res.render('user/edit_profile');
 });
 
 // Edit account
 router.get('/account', requireLogin, (req, res) => {
-    res.render('edit_account');
+    res.render('user/edit_account');
 });
 
 // Edit Profile
@@ -120,7 +120,7 @@ router.post('/edit', requireLogin, (req, res) => {
     let errors = req.validationErrors();
 
     if (errors) {
-        res.render('edit_profile', {
+        res.render('user/edit_profile', {
             errors: errors
         });
     } else {
@@ -158,7 +158,7 @@ router.post('/account', requireLogin, (req, res) => {
     let errors = req.validationErrors();
 
     if (errors) {
-        res.render('edit_account', {
+        res.render('user/edit_account', {
             errors: errors
         });
     } else {
@@ -221,7 +221,7 @@ router.get('/:username', (req, res) => {
                         totalVotes += q.votes;
                     }
                     AnswerModel.find({author: req.params.username}, (err, answers) => {
-                        res.render('userinfo', {
+                        res.render('user/userinfo', {
                             questions: question,
                             answers: answers,
                             current_user : user,

@@ -24,7 +24,7 @@ router.get('/ask', requireLogin, (req, res) => {
     let sem = req.user.semester;
     let stream = req.user.faculty;
     CategoryModel.find({year, sem, stream}, (err, categories) => {
-        res.render('ask_question', {categories});        
+        res.render('question/ask_question', {categories});        
     });
 });
 
@@ -69,7 +69,7 @@ router.get('/edit/:id', requireLogin, (req, res) => {
             console.log(err);
         } else {
             CategoryModel.find({year, sem, stream}, (err, categories) => {
-                res.render('edit_question', {categories, question});        
+                res.render('question/edit_question', {categories, question});        
             });
         }
     });
@@ -105,10 +105,7 @@ router.post('/ask', (req, res) => {
     let errors = req.validationErrors();
 
     if (errors) {
-        res.render('ask_question', {
-            title : 'Add Question',
-            errors: errors
-        });
+        res.redirect('ask');
     } else {
         let question = new Questions({
             title: req.body.title,
@@ -136,7 +133,7 @@ router.get('/:id', (req, res) => {
         } else {
             AnswerModel.find({parent: req.params.id}, (err, answers) => {
                 DB.getAll().then((data) => {
-                    res.render('question', {
+                    res.render('question/question', {
                         users: data.users,
                         tags : data.subjects,
                         kuNews : data.news,

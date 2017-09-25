@@ -12,13 +12,12 @@ const favicon = require('serve-favicon');
 const socketIO = require('socket.io');
 
 // MongoDB Database
+let db;
 if (process.env.NODE_ENV === 'production') {
-    mongoose.connect('mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura');
+    db = mongoose.connect('mongodb://kuraforum:kuraforum123@ds129733.mlab.com:29733/kura', {useMongoClient: true});
 } else {
-    mongoose.connect('mongodb://127.0.0.1/kura');    
+    db = mongoose.connect('mongodb://127.0.0.1/kura', {useMongoClient : true});    
 }
-
-let db = mongoose.connection;
 
 // Check for Database connection and errors
 db.on('error', (err) => {
@@ -142,7 +141,7 @@ app.use('/search', searchRoute);
 
 // 404 Errors
 app.get('*', (req, res) => {
-    res.render('404_page');
+    res.render('info/404_page');
 });
 
 server.listen(port, ()=> {
